@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بازی حدس پایتخت‌ها</title>
+    <!-- بارگذاری فونت وزیرمتن -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --accent: #ff007a;
+            --correct: #10b981;
+            --wrong: #ef4444;
+            --card-bg: #ffffff;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Vazirmatn', system-ui, -apple-system, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f77062 100%);
+            padding: 16px;
+            color: var(--text-dark);
+        }
+
+        .quiz-card {
+            background: var(--card-bg);
+            width: 100%;
+            max-width: 500px;
+            border-radius: 28px;
+            padding: 28px 24px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* سربرگ بازی */
+        .quiz-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .badge {
+            background-color: #f1f5f9;
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .badge-score {
+            background-color: #fef3c7;
+            color: #d97706;
+        }
+
+        /* نوار زمان */
+        .timer-container {
+            margin-bottom: 24px;
+        }
+
+        .timer-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: var(--text-muted);
+        }
+
+        .timer-seconds {
+            color: var(--accent);
+            font-size: 1rem;
+        }
+
+        .progress-bar-bg {
+            width: 100%;
+            height: 8px;
+            background-color: #e2e8f0;
+            border-radius: 99px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(90deg, #ff007a, #f59e0b);
+            border-radius: 99px;
+            transition: width 0.1s linear;
+        }
+
+        /* متن سوال */
+        .question-box {
+            text-align: center;
+            margin-bottom: 26px;
+        }
+
+        .question-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* دکمه‌های گزینه‌ها */
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        @media (max-width: 420px) {
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .option-btn {
+            background-color: #f8fafc;
+            border: 2px solid #e2e8f0;
+            padding: 14px 12px;
+            border-radius: 16px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #334155;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+
+        .option-btn:hover:not(:disabled) {
+            border-color: var(--primary);
+            background-color: #eef2ff;
+            transform: translateY(-2px);
+        }
+
+        /* وضعیت پاسخ‌ها */
+        .option-btn.correct {
+            background-color: #d1fae5 !important;
+            border-color: var(--correct) !important;
+            color: #065f46 !important;
+            animation: pulse 0.4s ease;
+        }
+
+        .option-btn.wrong {
+            background-color: #fee2e2 !important;
+            border-color: var(--wrong) !important;
+            color: #991b1b !important;
+        }
+
+        .option-btn:disabled {
+            cursor: default;
+            transform: none;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+
+        /* دکمه بعدی */
+        .action-container {
+            min-height: 50px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .next-btn {
+            background: linear-gradient(135deg, var(--primary) 0%, #8b5cf6 100%);
+            color: #ffffff;
+            border: none;
+            padding: 12px 32px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+            transition: all 0.2s ease;
+            display: none;
+        }
+
+        .next-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.5);
+        }
+
+        /* صفحه پایان */
+        .result-screen {
+            display: none;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .result-emoji {
+            font-size: 4rem;
+            margin-bottom: 12px;
+        }
+
+        .result-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .result-desc {
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .final-score {
+            font-size: 2.4rem;
+            font-weight: 900;
+            color: var(--primary);
+            margin-bottom: 24px;
+        }
+
+        .restart-btn {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border: none;
+            padding: 14px 36px;
+            border-radius: 50px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
+            transition: all 0.2s ease;
+        }
+
+        .restart-btn:hover {
+            transform: scale(1.03);
+        }
+    </style>
+</head>
+<body>
+
+    <main class="quiz-card">
+        <!-- محیط فعال بازی -->
+        <div id="gameScreen">
+            <header class="quiz-header">
+                <span class="badge" id="questionCounter">سوال ۱ از ۸</span>
+                <span class="badge badge-score" id="scoreDisplay">امتیاز: ۰</span>
+            </header>
+
+            <div class="timer-container">
+                <div class="timer-info">
+                    <span>زمان باقی‌مانده</span>
+                    <span class="timer-seconds" id="timerText">۵ ثانیه</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" id="progressBar"></div>
+                </div>
+            </div>
+
+            <div class="question-box">
+                <h2 class="question-title" id="questionText">پایتخت کشور فرانسه کدام است؟</h2>
+            </div>
+
+            <div class="options-grid" id="optionsContainer">
+                <!-- دکمه‌ها توسط جاوااسکریپت ساخته می‌شوند -->
+            </div>
+
+            <div class="action-container">
+                <button id="nextBtn" class="next-btn" onclick="nextQuestion()">سوال بعدی ➜</button>
+            </div>
+        </div>
+
+        <!-- صفحه نمایش نتیجه نهایی -->
+        <div id="resultScreen" class="result-screen">
+            <div class="result-emoji" id="resultEmoji">🎉</div>
+            <h2 class="result-title" id="resultTitle">بازی تمام شد!</h2>
+            <p class="result-desc">عملکرد شما در این مسابقه:</p>
+            <div class="final-score" id="finalScoreText">۰ / ۸</div>
+            <button class="restart-btn" onclick="restartGame()">شروع مجدد بازی 🔄</button>
+        </div>
+    </main>
+
+    <script>
+        // بانک سوالات پایتخت‌ها
+        const questions = [
+            {
+                country: "فرانسه",
+                options: ["لیون", "مارسی", "پاریس", "نیس"],
+                answer: "پاریس"
+            },
+            {
+                country: "ژاپن",
+                options: ["کیوتو", "توکیو", "اوزاکا", "هیروشیما"],
+                answer: "توکیو"
+            },
+            {
+                country: "استرالیا",
+                options: ["سیدنی", "ملبورن", "بریزبن", "کانبرا"],
+                answer: "کانبرا"
+            },
+            {
+                country: "برزیل",
+                options: ["ریودوژانیرو", "برازیلیا", "سائوپائولو", "سالوادور"],
+                answer: "برازیلیا"
+            },
+            {
+                country: "کانادا",
+                options: ["تورنتو", "ونکوور", "اتاوا", "مونترال"],
+                answer: "اتاوا"
+            },
+            {
+                country: "مصر",
+                options: ["اسکندریه", "قاهره", "جیزه", "اقصر"],
+                answer: "قاهره"
+            },
+            {
+                country: "آلمان",
+                options: ["مونیخ", "فرانکفورت", "برلین", "هامبورگ"],
+                answer: "برلین"
+            },
+            {
+                country: "ترکیه",
+                options: ["استانبول", "آنکارا", "ازمیر", "آنتالیا"],
+                answer: "آنکارا"
+            }
+        ];
+
+        // متغیرهای حالت بازی
+        let currentQuestionIndex = 0;
+        let score = 0;
+        const TIME_LIMIT = 5; // ۵ ثانیه برای هر سوال
+        let timeLeft = TIME_LIMIT;
+        let timerInterval = null;
+        let answered = false;
+
+        // المان‌های DOM
+        const gameScreen = document.getElementById('gameScreen');
+        const resultScreen = document.getElementById('resultScreen');
+        const questionText = document.getElementById('questionText');
+        const optionsContainer = document.getElementById('optionsContainer');
+        const nextBtn = document.getElementById('nextBtn');
+        const timerText = document.getElementById('timerText');
+        const progressBar = document.getElementById('progressBar');
+        const questionCounter = document.getElementById('questionCounter');
+        const scoreDisplay = document.getElementById('scoreDisplay');
+        const finalScoreText = document.getElementById('finalScoreText');
+        const resultTitle = document.getElementById('resultTitle');
+        const resultEmoji = document.getElementById('resultEmoji');
+
+        // شروع بازی
+        function initGame() {
+            currentQuestionIndex = 0;
+            score = 0;
+            gameScreen.style.display = 'block';
+            resultScreen.style.display = 'none';
+            scoreDisplay.textContent = `امتیاز: ۰`;
+            loadQuestion();
+        }
+
+        // بارگذاری سوال جاری
+        function loadQuestion() {
+            answered = false;
+            nextBtn.style.display = 'none';
+            timeLeft = TIME_LIMIT;
+            
+            const currentQ = questions[currentQuestionIndex];
+            questionCounter.textContent = `سوال ${currentQuestionIndex + 1} از ${questions.length}`;
+            questionText.textContent = `پایتخت کشور «${currentQ.country}» کدام است؟`;
+            
+            // تولید دکمه‌های پاسخ
+            optionsContainer.innerHTML = '';
+            currentQ.options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.textContent = opt;
+                btn.onclick = () => handleAnswer(opt, btn);
+                optionsContainer.appendChild(btn);
+            });
+
+            startTimer();
+        }
+
+        // تایمر معکوس ۵ ثانیه‌ای
+        function startTimer() {
+            clearInterval(timerInterval);
+            updateTimerDisplay();
+
+            const startTime = Date.now();
+            const totalDuration = TIME_LIMIT * 1000;
+
+            timerInterval = setInterval(() => {
+                const elapsed = Date.now() - startTime;
+                const remaining = Math.max(0, totalDuration - elapsed);
+
+                timeLeft = Math.ceil(remaining / 1000);
+                const progressPercent = (remaining / totalDuration) * 100;
+                
+                progressBar.style.width = `${progressPercent}%`;
+                timerText.textContent = `${timeLeft} ثانیه`;
+
+                if (remaining <= 0) {
+                    clearInterval(timerInterval);
+                    handleTimeOut();
+                }
+            }, 50);
+        }
+
+        function updateTimerDisplay() {
+            timerText.textContent = `${timeLeft} ثانیه`;
+            progressBar.style.width = '100%';
+        }
+
+        // پردازش انتخاب گزینه توسط کاربر
+        function handleAnswer(selectedOption, selectedButton) {
+            if (answered) return;
+            answered = true;
+            clearInterval(timerInterval);
+
+            const currentQ = questions[currentQuestionIndex];
+            const buttons = optionsContainer.querySelectorAll('.option-btn');
+
+            // قفل کردن تمام دکمه‌ها
+            buttons.forEach(btn => btn.disabled = true);
+
+            if (selectedOption === currentQ.answer) {
+                selectedButton.classList.add('correct');
+                score += 10;
+                scoreDisplay.textContent = `امتیاز: ${score}`;
+            } else {
+                selectedButton.classList.add('wrong');
+                // نمایش گزینه صحیح با رنگ سبز
+                revealCorrectAnswer();
+            }
+
+            // ظاهر شدن دکمه سوال بعدی
+            nextBtn.style.display = 'inline-block';
+        }
+
+        // اگر وقت تمام شد
+        function handleTimeOut() {
+            if (answered) return;
+            answered = true;
+
+            const buttons = optionsContainer.querySelectorAll('.option-btn');
+            buttons.forEach(btn => btn.disabled = true);
+
+            // مشخص کردن پاسخ صحیح با سبز
+            revealCorrectAnswer();
+
+            // نمایش دکمه سوال بعدی
+            nextBtn.style.display = 'inline-block';
+        }
+
+        // رنگی کردن پاسخ درست به رنگ سبز
+        function revealCorrectAnswer() {
+            const currentQ = questions[currentQuestionIndex];
+            const buttons = optionsContainer.querySelectorAll('.option-btn');
+            buttons.forEach(btn => {
+                if (btn.textContent === currentQ.answer) {
+                    btn.classList.add('correct');
+                }
+            });
+        }
+
+        // رفتن به سوال بعدی
+        function nextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                loadQuestion();
+            } else {
+                showFinalResults();
+            }
+        }
+
+        // نمایش نتایج نهایی
+        function showFinalResults() {
+            clearInterval(timerInterval);
+            gameScreen.style.display = 'none';
+            resultScreen.style.display = 'block';
+
+            finalScoreText.textContent = `${score} از ${questions.length * 10}`;
+
+            if (score >= 70) {
+                resultEmoji.textContent = '🏆';
+                resultTitle.textContent = 'فوق‌العاده بود!';
+            } else if (score >= 40) {
+                resultEmoji.textContent = '👏';
+                resultTitle.textContent = 'عملکرد خوبی داشتی!';
+            } else {
+                resultEmoji.textContent = '📚';
+                resultTitle.textContent = 'نیاز به تمرین بیشتر داری!';
+            }
+        }
+
+        // راه‌اندازی مجدد
+        function restartGame() {
+            initGame();
+        }
+
+        // شروع اولیه بازی
+        initGame();
+    </script>
+</body>
+</html>
