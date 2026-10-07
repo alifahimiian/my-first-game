@@ -3,34 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>پلنر روزانه شخصی</title>
-    <!-- بارگذاری فونت وزیرمتن -->
+    <title>پلنر روزانه و مدیریت زندگی</title>
+    <!-- بارگذاری فونت وزیرمتن و فونت قرآنی امیری برای بسم الله -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            /* پالت رنگی اختصاصی */
-            --azure-deep: #1e3a8a;       /* لاجوردی تیره */
-            --azure-primary: #1d4ed8;    /* لاجوردی روشن */
-            --azure-light: #eff6ff;
-            --turquoise-main: #0d9488;   /* فیروزه‌ای اصلی */
-            --turquoise-light: #ccfbf1;  /* فیروزه‌ای روشن */
-            --turquoise-accent: #14b8a6;
-            --mustard-main: #d97706;     /* خردلی اصلی */
-            --mustard-light: #fef3c7;    /* خردلی روشن */
-            --mustard-dark: #b45309;
-
-            --bg-gradient: linear-gradient(135deg, #f0fdfa 0%, #eff6ff 50%, #fffbeb 100%);
-            --glass-bg: rgba(255, 255, 255, 0.72);
-            --glass-border: rgba(255, 255, 255, 0.85);
-            --glass-shadow: 0 12px 32px 0 rgba(30, 58, 138, 0.07);
-
-            --text-dark: #0f172a;
-            --text-muted: #64748b;
+            --azure-deep: #0f275e;
+            --azure-primary: #1e3a8a;
+            --azure-light: #dbeafe;
+            --turquoise-main: #0d9488;
+            --turquoise-accent: #06b6d4;
+            --turquoise-light: #ccfbf1;
+            --mustard-main: #d97706;
+            --mustard-light: #fef3c7;
+            --mustard-dark: #92400e;
+            
+            --bg-color: #f8fafc;
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.95);
+            --shadow-soft: 0 10px 30px rgba(15, 39, 94, 0.06);
             --danger: #ef4444;
-            --radius-lg: 20px;
+            --success: #10b981;
+            --radius-lg: 22px;
             --radius-md: 14px;
         }
 
@@ -38,116 +35,142 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Vazirmatn', system-ui, -apple-system, sans-serif;
+            font-family: 'Vazirmatn', sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            background: var(--bg-gradient);
+            background: linear-gradient(135deg, #f0fdfa 0%, #eff6ff 45%, #fffbeb 100%);
             background-attachment: fixed;
             min-height: 100vh;
-            color: var(--text-dark);
-            padding: 24px 16px 60px;
-            overflow-x: hidden;
+            color: #1e293b;
+            padding: 20px 14px 60px;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1240px;
             margin: 0 auto;
         }
 
-        /* سربرگ پلنر */
-        .header {
+        /* ۱. سربرگ بسم الله الرحمن الرحیم */
+        .bismillah-header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 12px;
+        }
+
+        .bismillah-text {
+            font-family: 'Amiri', serif;
+            font-size: 1.85rem;
+            color: var(--azure-deep);
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(217, 119, 6, 0.15);
+            display: inline-block;
+            border-bottom: 2px solid var(--mustard-main);
+            padding-bottom: 6px;
+        }
+
+        /* ۲. تقویم تعاملی */
+        .calendar-card {
             background: var(--glass-bg);
             backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
             border: 1px solid var(--glass-border);
             border-radius: var(--radius-lg);
-            padding: 24px 28px;
-            box-shadow: var(--glass-shadow);
+            padding: 20px 24px;
+            box-shadow: var(--shadow-soft);
             margin-bottom: 24px;
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
+            flex-direction: column;
             gap: 16px;
         }
 
-        .header-title h1 {
-            font-size: 1.8rem;
-            font-weight: 900;
-            color: var(--azure-deep);
+        .calendar-top {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 10px;
+            flex-wrap: wrap;
+            gap: 12px;
         }
 
-        .header-title p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-top: 4px;
-        }
-
-        .date-badge {
-            background: linear-gradient(135deg, var(--turquoise-light), var(--mustard-light));
-            color: var(--azure-deep);
-            padding: 8px 18px;
-            border-radius: 50px;
-            font-size: 0.95rem;
-            font-weight: 700;
-            border: 1px solid rgba(255, 255, 255, 0.9);
-            box-shadow: 0 4px 12px rgba(13, 148, 136, 0.12);
-        }
-
-        /* کارت عمومی گلس‌مورفیسم */
-        .glass-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--glass-border);
-            border-radius: var(--radius-lg);
-            padding: 22px;
-            box-shadow: var(--glass-shadow);
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-        }
-
-        .glass-card:hover {
-            box-shadow: 0 16px 36px 0 rgba(30, 58, 138, 0.1);
-        }
-
-        .card-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 16px;
-        }
-
-        .card-header .icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.15rem;
-        }
-
-        .card-header h2 {
-            font-size: 1.1rem;
+        .current-date-title {
+            font-size: 1.25rem;
             font-weight: 800;
             color: var(--azure-deep);
         }
 
-        /* رنگ آیکون کارت‌ها */
-        .icon-turquoise { background-color: var(--turquoise-light); color: var(--turquoise-main); }
-        .icon-azure { background-color: var(--azure-light); color: var(--azure-primary); }
-        .icon-mustard { background-color: var(--mustard-light); color: var(--mustard-main); }
+        .date-controllers {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-        /* طرح‌بندی شبکه داشبورد */
-        .planner-grid {
+        .btn-date {
+            background: var(--azure-light);
+            border: none;
+            color: var(--azure-primary);
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-date:hover {
+            background: var(--azure-primary);
+            color: white;
+        }
+
+        .week-strip {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+        }
+
+        @media (max-width: 640px) {
+            .week-strip {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .day-pill {
+            background: rgba(255, 255, 255, 0.7);
+            border: 1.5px solid #e2e8f0;
+            border-radius: var(--radius-md);
+            padding: 10px 6px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .day-pill:hover {
+            border-color: var(--turquoise-main);
+            transform: translateY(-2px);
+        }
+
+        .day-pill.active {
+            background: linear-gradient(135deg, var(--turquoise-main), var(--azure-primary));
+            border-color: transparent;
+            color: white;
+            box-shadow: 0 6px 16px rgba(13, 148, 136, 0.3);
+        }
+
+        .day-name {
+            font-size: 0.78rem;
+            display: block;
+            opacity: 0.85;
+            margin-bottom: 2px;
+        }
+
+        .day-number {
+            font-size: 1.15rem;
+            font-weight: 800;
+        }
+
+        /* ساختار شبکه اصلی پلنر */
+        .grid-layout {
             display: grid;
             grid-template-columns: repeat(12, 1fr);
-            gap: 20px;
+            gap: 22px;
         }
 
         .col-12 { grid-column: span 12; }
@@ -163,849 +186,1374 @@
             }
         }
 
-        /* فرم‌ها و تکست‌اریاها */
-        textarea, input[type="text"], input[type="number"] {
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(14px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            box-shadow: var(--shadow-soft);
+            transition: transform 0.2s ease;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 18px;
+        }
+
+        .card-title-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .icon-turq { background: var(--turquoise-light); color: var(--turquoise-main); }
+        .icon-azure { background: var(--azure-light); color: var(--azure-primary); }
+        .icon-mustard { background: var(--mustard-light); color: var(--mustard-main); }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--azure-deep);
+        }
+
+        /* فرم‌ها و اینپوت‌ها */
+        input[type="text"], input[type="number"], select, textarea {
             width: 100%;
-            background: rgba(255, 255, 255, 0.85);
-            border: 1.5px solid rgba(203, 213, 225, 0.8);
+            background: rgba(255, 255, 255, 0.95);
+            border: 1.5px solid #cbd5e1;
             border-radius: var(--radius-md);
-            padding: 12px 14px;
-            font-size: 0.95rem;
-            color: var(--text-dark);
+            padding: 10px 14px;
+            font-size: 0.92rem;
+            color: #0f172a;
             outline: none;
             transition: all 0.2s ease;
         }
 
-        textarea:focus, input[type="text"]:focus, input[type="number"]:focus {
+        input:focus, select:focus, textarea:focus {
             border-color: var(--turquoise-main);
-            background: #ffffff;
             box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.15);
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 95px;
-            line-height: 1.6;
-        }
-
-        /* ۱. دویدن‌های امروزم */
-        .running-card {
-            border-right: 5px solid var(--turquoise-accent);
-        }
-
-        /* ۲. کارهای امروز */
-        .tasks-card {
-            border-top: 4px solid var(--azure-primary);
-        }
-
-        .progress-box {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 12px;
-            padding: 12px;
-            margin-bottom: 16px;
-            border: 1px solid rgba(226, 232, 240, 0.9);
-        }
-
-        .progress-info {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--azure-deep);
-            margin-bottom: 6px;
-        }
-
-        .progress-bar-bg {
-            height: 10px;
-            background: #e2e8f0;
-            border-radius: 99px;
-            overflow: hidden;
-        }
-
-        .progress-bar-fill {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, var(--turquoise-main), var(--mustard-main));
-            border-radius: 99px;
-            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .task-input-group {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 16px;
         }
 
         .btn {
             border: none;
-            cursor: pointer;
-            border-radius: var(--radius-md);
-            font-weight: 600;
-            font-size: 0.95rem;
             padding: 10px 18px;
+            border-radius: var(--radius-md);
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
             transition: all 0.2s ease;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 6px;
-            white-space: nowrap;
-        }
-
-        .btn:active {
-            transform: scale(0.97);
         }
 
         .btn-primary {
-            background: var(--azure-deep);
+            background: var(--azure-primary);
             color: white;
         }
+        .btn-primary:hover { background: var(--azure-deep); }
 
-        .btn-primary:hover {
-            background: var(--azure-primary);
+        .btn-danger-soft {
+            background: #fee2e2;
+            color: var(--danger);
+        }
+        .btn-danger-soft:hover { background: #fecaca; }
+
+        /* ۳. بخش خواب عددی + آیکون ماه */
+        .sleep-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
         }
 
-        .btn-postpone {
-            background: var(--mustard-light);
-            color: var(--mustard-dark);
-            border: 1px solid rgba(217, 119, 6, 0.2);
-            font-size: 0.85rem;
-            padding: 8px 14px;
-            width: 100%;
-            margin-top: 14px;
+        .sleep-input-wrapper {
+            max-width: 120px;
         }
 
-        .btn-postpone:hover {
-            background: #fde68a;
+        .sleep-moons-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            font-size: 1.5rem;
+            min-height: 38px;
+            align-items: center;
+        }
+
+        .moon-icon {
+            animation: moonPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: inline-block;
+            filter: drop-shadow(0 2px 4px rgba(217, 119, 6, 0.3));
+        }
+
+        @keyframes moonPop {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* ۴. بخش پیشرفته کارها */
+        .task-creator {
+            display: grid;
+            grid-template-columns: 2fr 1fr auto;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .task-creator { grid-template-columns: 1fr; }
         }
 
         .task-list {
             list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 8px;
-            max-height: 280px;
+            gap: 14px;
+            max-height: 480px;
             overflow-y: auto;
-            padding-left: 4px;
+            padding-left: 6px;
         }
 
-        .task-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: rgba(255, 255, 255, 0.85);
-            border: 1px solid rgba(226, 232, 240, 0.8);
-            border-radius: 10px;
-            padding: 10px 14px;
-            transition: all 0.2s;
+        .task-card {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1.5px solid #e2e8f0;
+            border-radius: var(--radius-md);
+            padding: 14px;
+            transition: all 0.2s ease;
         }
 
-        .task-item:hover {
-            background: #ffffff;
+        .task-card:hover {
             border-color: #cbd5e1;
         }
 
-        .task-label {
+        .task-main-row {
             display: flex;
             align-items: center;
-            gap: 10px;
-            cursor: pointer;
-            flex: 1;
-            user-select: none;
+            justify-content: space-between;
+            gap: 12px;
         }
 
-        .task-label input[type="checkbox"] {
-            accent-color: var(--turquoise-main);
-            width: 18px;
-            height: 18px;
-            cursor: pointer;
-        }
-
-        .task-text {
-            font-size: 0.95rem;
-            transition: all 0.2s;
-            word-break: break-word;
-        }
-
-        .task-item.done .task-text {
-            text-decoration: line-through;
-            color: var(--text-muted);
-        }
-
-        .btn-delete {
-            background: none;
-            border: none;
-            color: #94a3b8;
-            cursor: pointer;
-            font-size: 1rem;
-            padding: 4px 8px;
-            border-radius: 6px;
-            transition: all 0.2s;
-        }
-
-        .btn-delete:hover {
-            color: var(--danger);
-            background: #fee2e2;
-        }
-
-        /* ۴. عادت‌های تیک‌زدنی */
-        .habits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-            gap: 10px;
-            margin-top: 8px;
-        }
-
-        .habit-btn {
-            background: rgba(255, 255, 255, 0.8);
-            border: 1.5px solid rgba(203, 213, 225, 0.8);
-            border-radius: var(--radius-md);
-            padding: 12px 10px;
-            cursor: pointer;
+        .task-label-group {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 6px;
-            text-align: center;
-            transition: all 0.2s;
-            user-select: none;
-        }
-
-        .habit-btn .habit-icon {
-            font-size: 1.3rem;
-        }
-
-        .habit-btn .habit-title {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--text-dark);
-        }
-
-        .habit-btn.active {
-            background: var(--turquoise-light);
-            border-color: var(--turquoise-main);
-            color: var(--turquoise-main);
-            box-shadow: 0 4px 12px rgba(13, 148, 136, 0.15);
-        }
-
-        .habit-btn.active .habit-title {
-            color: var(--turquoise-main);
-            font-weight: 800;
-        }
-
-        /* ۵. چقدر خوابیدم؟ */
-        .sleep-control {
-            display: flex;
-            flex-direction: column;
             align-items: center;
             gap: 12px;
-            margin-top: 6px;
+            flex: 1;
         }
 
-        .sleep-display {
-            font-size: 1.6rem;
-            font-weight: 900;
-            color: var(--azure-deep);
+        .task-type-badge {
+            font-size: 0.72rem;
+            padding: 3px 8px;
+            border-radius: 50px;
+            font-weight: 700;
+        }
+
+        .badge-mutewati { background: var(--azure-light); color: var(--azure-primary); }
+        .badge-mushakkak { background: var(--turquoise-light); color: var(--turquoise-main); }
+
+        .task-text {
+            font-weight: 700;
+            font-size: 0.96rem;
+            color: #1e293b;
+        }
+
+        .task-card.completed .task-text {
+            text-decoration: line-through;
+            color: #94a3b8;
+        }
+
+        /* استوانه آب سیال (برای کار مشکک) */
+        .cylinder-wrapper {
             display: flex;
-            align-items: baseline;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .liquid-cylinder {
+            width: 30px;
+            height: 65px;
+            border: 2px solid var(--turquoise-main);
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            background: rgba(204, 251, 241, 0.3);
+            box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.1);
+            flex-shrink: 0;
+        }
+
+        .liquid-fill {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(180deg, var(--turquoise-accent) 0%, var(--turquoise-main) 100%);
+            transition: height 0.35s ease;
+            border-radius: 0 0 16px 16px;
+        }
+
+        .liquid-wave {
+            position: absolute;
+            top: -6px;
+            left: -50%;
+            width: 200%;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 40%;
+            animation: waveMotion 2.5s infinite linear;
+        }
+
+        @keyframes waveMotion {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .cylinder-controls {
+            display: flex;
+            flex-direction: column;
             gap: 4px;
         }
 
-        .sleep-display small {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            font-weight: 500;
+        .cylinder-percent-text {
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: var(--turquoise-main);
+            text-align: center;
         }
 
-        .sleep-slider {
-            width: 100%;
-            accent-color: var(--mustard-main);
-            height: 6px;
+        .range-mini {
+            width: 80px;
+            accent-color: var(--turquoise-main);
             cursor: pointer;
         }
 
-        /* ۹. خرج و برج */
-        .expense-form {
-            display: grid;
-            grid-template-columns: 1.2fr 1fr auto;
+        /* زیرکارها (Sub-tasks) */
+        .subtasks-section {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed #e2e8f0;
+            padding-right: 28px;
+        }
+
+        .subtask-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 8px;
+        }
+
+        .subtask-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.85rem;
+        }
+
+        .subtask-item label {
+            display: flex;
+            align-items: center;
             gap: 8px;
-            margin-bottom: 14px;
+            cursor: pointer;
         }
 
-        @media (max-width: 480px) {
-            .expense-form {
-                grid-template-columns: 1fr;
-            }
+        .subtask-item.done span {
+            text-decoration: line-through;
+            color: #94a3b8;
         }
 
-        .btn-add-expense {
-            background: var(--mustard-main);
-            color: white;
+        .subtask-form {
+            display: flex;
+            gap: 6px;
         }
 
-        .btn-add-expense:hover {
-            background: var(--mustard-dark);
+        .subtask-form input {
+            font-size: 0.82rem;
+            padding: 6px 10px;
         }
 
-        .expense-list {
+        .btn-subtask {
+            background: #f1f5f9;
+            color: #475569;
+            font-size: 0.8rem;
+            padding: 4px 10px;
+        }
+
+        /* دکمه انتقال کارها به فردا */
+        .btn-transfer {
+            background: var(--mustard-light);
+            color: var(--mustard-dark);
+            border: 1.5px solid rgba(217, 119, 6, 0.3);
+            width: 100%;
+            margin-top: 14px;
+            padding: 12px;
+            font-weight: 800;
+        }
+
+        .btn-transfer:hover {
+            background: #fde68a;
+        }
+
+        /* ۵. نمودار پیشرفت روز */
+        .progress-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(240,253,250,0.9));
+            border-right: 5px solid var(--turquoise-main);
+        }
+
+        .progress-gauge-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .progress-details {
+            flex: 1;
+        }
+
+        .progress-title-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.92rem;
+            font-weight: 800;
+            color: var(--azure-deep);
+            margin-bottom: 8px;
+        }
+
+        .progress-bar-container {
+            height: 14px;
+            background: #e2e8f0;
+            border-radius: 99px;
+            overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .progress-bar-glow {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--turquoise-main), var(--mustard-main));
+            border-radius: 99px;
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ۶. عادت‌سنج تیک‌زدنی */
+        .habit-palette {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 10px 0;
+            background: #f8fafc;
+            padding: 10px;
+            border-radius: var(--radius-md);
+            border: 1px solid #e2e8f0;
+        }
+
+        .palette-icon {
+            font-size: 1.3rem;
+            padding: 6px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            line-height: 1;
+        }
+
+        .palette-icon:hover, .palette-icon.selected {
+            background: var(--mustard-light);
+            transform: scale(1.2);
+        }
+
+        .habit-items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(135px, 1fr));
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .habit-box {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: var(--radius-md);
+            padding: 12px 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            position: relative;
+        }
+
+        .habit-box.checked {
+            border-color: var(--turquoise-main);
+            background: var(--turquoise-light);
+            box-shadow: 0 4px 12px rgba(13, 148, 136, 0.15);
+        }
+
+        .habit-box .h-icon { font-size: 1.7rem; margin-bottom: 4px; display: block; }
+        .habit-box .h-title { font-size: 0.88rem; font-weight: 700; color: #1e293b; }
+        .habit-delete-btn {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            background: none;
+            border: none;
+            color: #cbd5e1;
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+        .habit-delete-btn:hover { color: var(--danger); }
+
+        /* ۷. بودجه ماهانه و خرج‌وبرج */
+        .budget-header-box {
+            background: linear-gradient(135deg, var(--mustard-light), #fffbeb);
+            border: 1px solid rgba(217, 119, 6, 0.25);
+            border-radius: var(--radius-md);
+            padding: 14px;
+            margin-bottom: 16px;
+        }
+
+        .budget-inputs-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+
+        .budget-metrics {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            text-align: center;
+        }
+
+        .metric-pill {
+            background: white;
+            padding: 8px;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .metric-label { font-size: 0.75rem; color: #64748b; font-weight: 700; }
+        .metric-val { font-size: 1rem; font-weight: 800; color: var(--azure-deep); }
+
+        .expenses-table {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            max-height: 180px;
+            overflow-y: auto;
+            margin-top: 12px;
+        }
+
+        .expense-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            border: 1px solid #f1f5f9;
+        }
+
+        /* ۸. تماس‌ها */
+        .call-list {
             list-style: none;
             display: flex;
             flex-direction: column;
             gap: 8px;
-            max-height: 190px;
+            max-height: 250px;
             overflow-y: auto;
-            margin-bottom: 14px;
+            margin-top: 14px;
         }
 
-        .expense-item {
+        .call-item {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: rgba(255, 255, 255, 0.9);
-            border: 1px solid rgba(226, 232, 240, 0.9);
-            border-radius: 10px;
-            padding: 8px 14px;
-            font-size: 0.9rem;
-        }
-
-        .expense-amount {
-            font-weight: 800;
-            color: var(--mustard-dark);
-            margin-left: 8px;
-        }
-
-        .total-expense-box {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 16px;
-            background: var(--mustard-light);
+            background: white;
+            padding: 10px 14px;
             border-radius: var(--radius-md);
-            font-weight: 800;
-            color: var(--mustard-dark);
-            border: 1px solid rgba(217, 119, 6, 0.2);
+            border: 1px solid #e2e8f0;
         }
 
-        .total-amount {
-            font-size: 1.2rem;
+        .call-item.done {
+            background: #f8fafc;
+            opacity: 0.65;
         }
 
-        /* نشانگر ذخیره خودکار */
-        .toast-save {
+        .call-item.done .call-name {
+            text-decoration: line-through;
+        }
+
+        .call-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .call-name { font-weight: 700; font-size: 0.92rem; }
+        .call-topic { font-size: 0.78rem; color: #64748b; margin-top: 2px; }
+
+        /* ناتیفیکیشن ذخیره */
+        .toast {
             position: fixed;
-            bottom: 20px;
-            left: 20px;
+            bottom: 24px;
+            left: 24px;
             background: var(--azure-deep);
             color: white;
-            padding: 8px 18px;
+            padding: 10px 20px;
             border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-            display: flex;
-            align-items: center;
-            gap: 6px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
             opacity: 0;
-            transform: translateY(15px);
+            transform: translateY(20px);
             transition: all 0.3s ease;
-            pointer-events: none;
             z-index: 9999;
+            pointer-events: none;
         }
-
-        .toast-save.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* اسکرول بار نرم */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 10px;
-        }
+        .toast.show { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- سربرگ -->
-        <header class="header">
-            <div class="header-title">
-                <h1>✨ پلنر روزانه من</h1>
-                <p>ساخته‌شده برای تمرکز، آرامش و ثبت دستاوردهای روزمره</p>
-            </div>
-            <div class="date-badge" id="currentDateDisplay">امروز...</div>
+        
+        <!-- ۱. سربرگ بسم الله الرحمن الرحیم -->
+        <header class="bismillah-header">
+            <h1 class="bismillah-text">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</h1>
         </header>
 
-        <div class="planner-grid">
-            
-            <!-- ۱. دویدن‌های امروزم -->
-            <div class="glass-card col-8 running-card">
-                <div class="card-header">
-                    <div class="icon icon-turquoise">🏃‍♂️</div>
-                    <h2>دویدن‌های امروزم تقدیم به...</h2>
+        <!-- ۲. تقویم و انتخاب روزهای هفته/ماه -->
+        <section class="calendar-card">
+            <div class="calendar-top">
+                <div>
+                    <h2 class="current-date-title" id="activeDateHeading">برنامه روز...</h2>
                 </div>
-                <input 
-                    type="text" 
-                    id="dedicationInput" 
-                    placeholder="امروز تمام تلاشم، دویدنم و قدم‌هایم را تقدیم می‌کنم به..."
-                    autocomplete="off"
-                >
-            </div>
-
-            <!-- ۵. چقدر خوابیدم؟ -->
-            <div class="glass-card col-4">
-                <div class="card-header">
-                    <div class="icon icon-azure">🌙</div>
-                    <h2>چقدر خوابیدم؟</h2>
-                </div>
-                <div class="sleep-control">
-                    <div class="sleep-display">
-                        <span id="sleepNumber">۷.۵</span>
-                        <small>ساعت</small>
-                    </div>
-                    <input 
-                        type="range" 
-                        id="sleepSlider" 
-                        class="sleep-slider" 
-                        min="0" 
-                        max="14" 
-                        step="0.5" 
-                        value="7.5"
-                    >
+                <div class="date-controllers">
+                    <button class="btn-date" onclick="navigateDay(-1)">◀ روز قبل</button>
+                    <button class="btn-date" onclick="goToToday()">امروز</button>
+                    <button class="btn-date" onclick="navigateDay(1)">روز بعد ▶</button>
                 </div>
             </div>
+            <!-- نوار روزهای هفته -->
+            <div class="week-strip" id="weekStripContainer"></div>
+        </section>
 
-            <!-- ۲. کارهای امروز -->
-            <div class="glass-card col-7 tasks-card">
+        <!-- چیدمان اصلی کارت‌ها -->
+        <div class="grid-layout">
+
+            <!-- ۳. بخش خواب: فیلد عددی + ماه ها -->
+            <div class="card col-12">
                 <div class="card-header">
-                    <div class="icon icon-azure">📝</div>
-                    <h2>کارهای امروز</h2>
-                </div>
-
-                <!-- نوار درصد پیشرفت -->
-                <div class="progress-box">
-                    <div class="progress-info">
-                        <span>میزان تکمیل وظایف</span>
-                        <span id="progressPercent">۰٪</span>
-                    </div>
-                    <div class="progress-bar-bg">
-                        <div class="progress-bar-fill" id="progressBar"></div>
+                    <div class="card-title-group">
+                        <div class="card-icon icon-azure">🌙</div>
+                        <h3 class="card-title">میزان خواب دیشب</h3>
                     </div>
                 </div>
+                <div class="sleep-row">
+                    <div class="sleep-input-wrapper">
+                        <input type="number" id="sleepHoursInput" min="0" max="24" step="1" placeholder="ساعت خواب">
+                    </div>
+                    <div class="sleep-moons-container" id="sleepMoonsDisplay">
+                        <!-- آیکون‌های ماه اینجا ظاهر می‌شوند -->
+                    </div>
+                </div>
+            </div>
 
-                <!-- فرم افزودن کار جدید -->
-                <form id="taskForm" class="task-input-group">
-                    <input 
-                        type="text" 
-                        id="taskInput" 
-                        placeholder="عنوان کار جدید را بنویسید..." 
-                        autocomplete="off"
-                    >
+            <!-- ۴. بخش پیشرفته کارها (متواطی / مشکک / زیرکارها) -->
+            <div class="card col-7">
+                <div class="card-header">
+                    <div class="card-title-group">
+                        <div class="card-icon icon-turq">📋</div>
+                        <h3 class="card-title">فعالیت‌ها و برنامه‌های روز</h3>
+                    </div>
+                </div>
+
+                <!-- فرم افزودن فعالیت جدید -->
+                <form id="taskCreateForm" class="task-creator">
+                    <input type="text" id="taskTitleInput" placeholder="عنوان فعالیت را وارد کنید..." required>
+                    <select id="taskTypeSelect">
+                        <option value="mutewati">متواطی (چک‌باکس ساده)</option>
+                        <option value="mushakkak">مشکک (آب سیال / درصدی)</option>
+                    </select>
                     <button type="submit" class="btn btn-primary">افزودن</button>
                 </form>
 
                 <!-- لیست کارها -->
-                <ul class="task-list" id="taskList"></ul>
+                <ul class="task-list" id="taskListContainer"></ul>
 
-                <!-- دکمه انتقال کارهای انجام‌نشده -->
-                <button type="button" class="btn btn-postpone" id="postponeBtn">
-                    🔄 انتقال کارهای انجام‌نشده به فردا (حذف موارد تکمیل‌شده)
+                <!-- دکمه انتقال کارهای انجام نشده به فردا -->
+                <button type="button" class="btn btn-transfer" onclick="transferIncompleteTasksToTomorrow()">
+                    ⏩ انتقال کارهای انجام‌نشده به تاریخِ فردا در تقویم
                 </button>
             </div>
 
-            <!-- ۴. عادت‌های تیک‌زدنی -->
-            <div class="glass-card col-5">
-                <div class="card-header">
-                    <div class="icon icon-turquoise">🌱</div>
-                    <h2>عادت‌های تیک‌زدنی</h2>
+            <!-- ۵. نمودار پیشرفت روز + تماس‌ها -->
+            <div class="col-5" style="display:flex; flex-direction:column; gap:22px;">
+                
+                <!-- نمودار پیشرفت -->
+                <div class="card progress-card">
+                    <div class="card-header" style="margin-bottom:12px;">
+                        <div class="card-title-group">
+                            <div class="card-icon icon-turq">📊</div>
+                            <h3 class="card-title">پیشرفت کل فعالیت‌های امروز</h3>
+                        </div>
+                    </div>
+                    <div class="progress-gauge-wrapper">
+                        <div class="progress-details">
+                            <div class="progress-title-meta">
+                                <span>درصد تحقق برنامه‌ها</span>
+                                <span id="progressPercentageLabel">۰٪</span>
+                            </div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar-glow" id="dailyProgressBar"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="habits-grid" id="habitsContainer">
-                    <!-- به صورت خودکار توسط جاوااسکریپت مقداردهی می‌شود -->
+
+                <!-- ۸. بخش تماس‌ها و پیگیری‌ها -->
+                <div class="card" style="flex:1;">
+                    <div class="card-header">
+                        <div class="card-title-group">
+                            <div class="card-icon icon-azure">📞</div>
+                            <h3 class="card-title">تماس‌ها و پیگیری‌ها</h3>
+                        </div>
+                    </div>
+
+                    <form id="callCreateForm" style="display:flex; gap:8px; margin-bottom:10px;">
+                        <input type="text" id="callNameInput" placeholder="نام مخاطب" required style="flex:1;">
+                        <input type="text" id="callTopicInput" placeholder="موضوع تماس" style="flex:1;">
+                        <button type="submit" class="btn btn-primary">ثبت</button>
+                    </form>
+
+                    <ul class="call-list" id="callListContainer"></ul>
                 </div>
             </div>
 
-            <!-- ۳. تفریحات امروزم -->
-            <div class="glass-card col-4">
+            <!-- ۶. عادت‌سنج تیک‌زدنی (Habit Tracker) با پالت آیکون -->
+            <div class="card col-6">
                 <div class="card-header">
-                    <div class="icon icon-mustard">🎨</div>
-                    <h2>تفریحات امروزم</h2>
+                    <div class="card-title-group">
+                        <div class="card-icon icon-turq">🌱</div>
+                        <h3 class="card-title">عادت‌های تیک‌زدنی (Habit Tracker)</h3>
+                    </div>
                 </div>
-                <textarea 
-                    id="recreationInput" 
-                    placeholder="کتاب، فیلم، هم‌صحبتی، نوشیدن قهوه در آرامش..."
-                ></textarea>
+
+                <!-- فرم تعریف عادت جدید -->
+                <div>
+                    <div style="display:flex; gap:8px;">
+                        <input type="text" id="habitTitleInput" placeholder="نام عادت جدید (مثال: ۲۰ دقیقه مطالعه)">
+                        <button type="button" class="btn btn-primary" onclick="addNewHabit()">افزودن عادت</button>
+                    </div>
+
+                    <!-- پالت ۱۶ آیکون انتخابی -->
+                    <div class="habit-palette" id="habitPalette"></div>
+                </div>
+
+                <div class="habit-items-grid" id="habitContainer">
+                    <!-- عادت‌ها در اینجا رسم می‌شوند -->
+                </div>
             </div>
 
-            <!-- ۷. کجاها موفقیت کسب کردم؟ -->
-            <div class="glass-card col-4">
+            <!-- ۷. بودجه ماهانه و خرج‌وبرج -->
+            <div class="card col-6">
                 <div class="card-header">
-                    <div class="icon icon-turquoise">🏆</div>
-                    <h2>کجاها موفقیت کسب کردم؟</h2>
-                </div>
-                <textarea 
-                    id="successInput" 
-                    placeholder="بردهای کوچک، تسلیم نشدن‌ها، کارهای به سرانجام رسیده..."
-                ></textarea>
-            </div>
-
-            <!-- ۶. اشتباهات امروزم کجا بود؟ -->
-            <div class="glass-card col-4">
-                <div class="card-header">
-                    <div class="icon icon-mustard">🔍</div>
-                    <h2>اشتباهات امروزم کجا بود؟</h2>
-                </div>
-                <textarea 
-                    id="mistakesInput" 
-                    placeholder="چه چیزهایی را می‌توانستم بهتر مدیریت کنم؟ درس‌های امروز..."
-                ></textarea>
-            </div>
-
-            <!-- ۸. چه دغدغه‌هایی ذهنتو درگیر کرد؟ -->
-            <div class="glass-card col-6">
-                <div class="card-header">
-                    <div class="icon icon-azure">💭</div>
-                    <h2>چه دغدغه‌هایی ذهنتو درگیر کرد؟</h2>
-                </div>
-                <textarea 
-                    id="worriesInput" 
-                    placeholder="تخلیه ذهن: اضطراب‌ها، مسائل حل‌نشده و افکاری که نیاز به رهایی دارند..."
-                ></textarea>
-            </div>
-
-            <!-- ۹. خرج و برج امروز -->
-            <div class="glass-card col-6">
-                <div class="card-header">
-                    <div class="icon icon-mustard">💳</div>
-                    <h2>خرج و برجت امروز چقدر بود؟</h2>
+                    <div class="card-title-group">
+                        <div class="card-icon icon-mustard">💰</div>
+                        <h3 class="card-title">بودجه ماهانه و خرج‌وبرج</h3>
+                    </div>
                 </div>
 
-                <form id="expenseForm" class="expense-form">
-                    <input 
-                        type="text" 
-                        id="expenseTitle" 
-                        placeholder="بابت چه چیزی؟" 
-                        required
-                    >
-                    <input 
-                        type="number" 
-                        id="expenseAmount" 
-                        placeholder="مبلغ (تومان)" 
-                        min="0" 
-                        required
-                    >
-                    <button type="submit" class="btn btn-add-expense">ثبت خرج</button>
+                <div class="budget-header-box">
+                    <div class="budget-inputs-row">
+                        <label style="font-size:0.85rem; font-weight:700;">بودجه کل این ماه (تومان):</label>
+                        <input type="number" id="monthlyBudgetInput" placeholder="مثال: ۱۰,۰۰۰,۰۰۰" style="max-width:180px;">
+                    </div>
+                    <div class="budget-metrics">
+                        <div class="metric-pill">
+                            <div class="metric-label">کل مخارج ثبت‌شده</div>
+                            <div class="metric-val" id="totalExpensesDisplay">۰</div>
+                        </div>
+                        <div class="metric-pill">
+                            <div class="metric-label">باقی‌مانده از بودجه</div>
+                            <div class="metric-val" id="remainingBudgetDisplay" style="color:var(--turquoise-main);">۰</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- فرم ثبت هزینه روز -->
+                <form id="expenseCreateForm" style="display:flex; gap:8px; margin-bottom:8px;">
+                    <input type="text" id="expenseTitleInput" placeholder="بابت چه چیزی؟" required style="flex:1.2;">
+                    <input type="number" id="expenseAmountInput" placeholder="مبلغ (تومان)" required style="flex:1;">
+                    <button type="submit" class="btn" style="background:var(--mustard-main); color:white;">ثبت</button>
                 </form>
 
-                <ul class="expense-list" id="expenseList"></ul>
-
-                <div class="total-expense-box">
-                    <span>مجموع مخارج امروز:</span>
-                    <span class="total-amount" id="totalExpenseAmount">۰ تومان</span>
-                </div>
+                <ul class="expenses-table" id="expensesListContainer"></ul>
             </div>
 
         </div>
     </div>
 
-    <!-- پیام نرم ذخیره‌سازی -->
-    <div id="saveToast" class="toast-save">
-        ✓ تغییرات ذخیره شد
-    </div>
+    <!-- پیام ذخیره‌سازی -->
+    <div id="saveToast" class="toast">✓ اطلاعات ذخیره شد</div>
 
     <script>
-        // نام کلید اصلی در LocalStorage
-        const STORAGE_KEY = 'daily_personal_planner_data';
+        /* ===================================================
+           مدیریت داده‌ها و ذخیره‌سازی در LocalStorage
+           =================================================== */
+        const STORAGE_PREFIX = 'planner_v2_';
+        const GLOBAL_KEY = 'planner_v2_global';
 
-        // عادت‌های پیش‌فرض
-        const DEFAULT_HABITS = [
-            { id: 'water', icon: '💧', text: '۸ لیوان آب', done: false },
-            { id: 'reading', icon: '📖', text: 'مطالعه روزانه', done: false },
-            { id: 'walk', icon: '👟', text: 'تحرک و ورزش', done: false },
-            { id: 'mind', icon: '🧘‍♂️', text: 'مدیتیشن / سکوت', done: false },
-            { id: 'screen', icon: '📵', text: 'محدودیت موبایل', done: false },
-            { id: 'healthy', icon: '🥗', text: 'تغذیه سالم', done: false }
-        ];
+        // تاریخ فعال جاری
+        let activeDate = new Date();
 
-        // مدل داده برنامه
-        let state = {
-            dedication: '',
-            sleep: 7.5,
-            tasks: [],
-            habits: DEFAULT_HABITS,
-            recreation: '',
-            successes: '',
-            mistakes: '',
-            worries: '',
-            expenses: []
+        // عادت‌های از پیش تعیین‌شده در سیستم (پالت آیکون‌ها)
+        const AVAILABLE_ICONS = ['💧', '📖', '🏃‍♂️', '🧘‍♂️', '🥗', '💊', '📵', '🎯', '✍️', '🧹', '🚶‍♂️', '🌿', '💡', '🎨', '🎵', '💤'];
+        let selectedHabitIcon = AVAILABLE_ICONS[0];
+
+        // داده‌های عمومی (بودجه ماهانه و ساختار کلی عادت‌ها)
+        let globalData = {
+            monthlyBudget: 0,
+            habitsCatalog: [] // لیستی از { id, title, icon }
         };
 
-        // المان‌های صفحه
-        const toast = document.getElementById('saveToast');
-        let toastTimeout = null;
+        // داده‌های اختصاصی هر روز
+        let currentDayData = {
+            sleepHours: 0,
+            tasks: [],
+            calls: [],
+            expenses: [],
+            checkedHabits: [] // آی‌دی عادت‌هایی که امروز تیک خوردند
+        };
 
-        function showSaveToast() {
-            clearTimeout(toastTimeout);
-            toast.classList.add('show');
-            toastTimeout = setTimeout(() => {
-                toast.classList.remove('show');
-            }, 1200);
+        function getActiveDateKey(date = activeDate) {
+            const y = date.getFullYear();
+            const m = String(date.getMonth() + 1).padStart(2, '0');
+            const d = String(date.getDate()).padStart(2, '0');
+            return `${y}-${m}-${d}`;
         }
 
-        // بارگذاری و ذخیره در LocalStorage
-        function saveState() {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-            showSaveToast();
+        function loadGlobalData() {
+            const raw = localStorage.getItem(GLOBAL_KEY);
+            if (raw) {
+                try { globalData = { ...globalData, ...JSON.parse(raw) }; } catch(e){}
+            }
         }
 
-        function loadState() {
-            const raw = localStorage.getItem(STORAGE_KEY);
+        function saveGlobalData() {
+            localStorage.setItem(GLOBAL_KEY, JSON.stringify(globalData));
+            showToast();
+        }
+
+        function loadDayData(date = activeDate) {
+            const key = STORAGE_PREFIX + getActiveDateKey(date);
+            const raw = localStorage.getItem(key);
             if (raw) {
                 try {
-                    const parsed = JSON.parse(raw);
-                    state = { ...state, ...parsed };
-                } catch (e) {
-                    console.error('خطا در خواندن اطلاعات:', e);
+                    currentDayData = JSON.parse(raw);
+                } catch(e) {
+                    currentDayData = defaultDayData();
                 }
+            } else {
+                currentDayData = defaultDayData();
             }
         }
 
-        // تاریخ شمسی امروز
-        function setPersianDate() {
-            const dateEl = document.getElementById('currentDateDisplay');
-            try {
-                const now = new Date();
-                const formatter = new Intl.DateTimeFormat('fa-IR', {
-                    weekday: 'long',
-                    day: 'numeric',
-                    month: 'long',
-                    year: 'numeric'
-                });
-                dateEl.textContent = formatter.format(now);
-            } catch (err) {
-                dateEl.textContent = 'امروز';
-            }
+        function saveDayData(date = activeDate) {
+            const key = STORAGE_PREFIX + getActiveDateKey(date);
+            localStorage.setItem(key, JSON.stringify(currentDayData));
+            showToast();
+            updateProgressGauge();
         }
 
-        /* --- ۱. دویدن‌ها و فیلدهای متنی ساده --- */
-        function bindSimpleInputs() {
-            const inputs = [
-                { id: 'dedicationInput', key: 'dedication' },
-                { id: 'recreationInput', key: 'recreation' },
-                { id: 'successInput', key: 'successes' },
-                { id: 'mistakesInput', key: 'mistakes' },
-                { id: 'worriesInput', key: 'worries' }
-            ];
-
-            inputs.forEach(item => {
-                const el = document.getElementById(item.id);
-                el.value = state[item.key] || '';
-                el.addEventListener('input', () => {
-                    state[item.key] = el.value;
-                    saveState();
-                });
-            });
+        function defaultDayData() {
+            return {
+                sleepHours: 0,
+                tasks: [],
+                calls: [],
+                expenses: [],
+                checkedHabits: []
+            };
         }
 
-        /* --- ۵. اسلایدر خواب --- */
-        function initSleep() {
-            const slider = document.getElementById('sleepSlider');
-            const number = document.getElementById('sleepNumber');
-
-            slider.value = state.sleep || 7.5;
-            number.textContent = Number(slider.value).toLocaleString('fa-IR');
-
-            slider.addEventListener('input', (e) => {
-                const val = parseFloat(e.target.value);
-                state.sleep = val;
-                number.textContent = val.toLocaleString('fa-IR');
-                saveState();
-            });
+        function showToast(text = '✓ اطلاعات ذخیره شد') {
+            const t = document.getElementById('saveToast');
+            t.textContent = text;
+            t.classList.add('show');
+            setTimeout(() => t.classList.remove('show'), 1500);
         }
 
-        /* --- ۴. عادت‌های روزانه --- */
-        function renderHabits() {
-            const container = document.getElementById('habitsContainer');
+        /* ===================================================
+           ۲. مدیریت تقویم و نوار روزها
+           =================================================== */
+        function formatPersianDate(date) {
+            return new Intl.DateTimeFormat('fa-IR', {
+                weekday: 'long',
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            }).format(date);
+        }
+
+        function renderCalendarStrip() {
+            document.getElementById('activeDateHeading').textContent = `برنامه ${formatPersianDate(activeDate)}`;
+            const container = document.getElementById('weekStripContainer');
             container.innerHTML = '';
 
-            state.habits.forEach((habit, idx) => {
-                const btn = document.createElement('div');
-                btn.className = `habit-btn ${habit.done ? 'active' : ''}`;
-                btn.innerHTML = `
-                    <span class="habit-icon">${habit.icon}</span>
-                    <span class="habit-title">${habit.text}</span>
+            // نمایش بازه ۳ روز قبل تا ۳ روز بعد
+            for (let i = -3; i <= 3; i++) {
+                const d = new Date(activeDate);
+                d.setDate(d.getDate() + i);
+
+                const pill = document.createElement('div');
+                pill.className = `day-pill ${i === 0 ? 'active' : ''}`;
+                
+                const dayName = new Intl.DateTimeFormat('fa-IR', { weekday: 'short' }).format(d);
+                const dayNum = new Intl.DateTimeFormat('fa-IR', { day: 'numeric', month: 'numeric' }).format(d);
+
+                pill.innerHTML = `
+                    <span class="day-name">${dayName}</span>
+                    <span class="day-number">${dayNum}</span>
                 `;
-                btn.onclick = () => {
-                    state.habits[idx].done = !state.habits[idx].done;
-                    saveState();
-                    renderHabits();
+
+                pill.onclick = () => {
+                    activeDate = d;
+                    switchDate();
                 };
-                container.appendChild(btn);
+
+                container.appendChild(pill);
+            }
+        }
+
+        function navigateDay(offset) {
+            activeDate.setDate(activeDate.getDate() + offset);
+            switchDate();
+        }
+
+        function goToToday() {
+            activeDate = new Date();
+            switchDate();
+        }
+
+        function switchDate() {
+            loadDayData();
+            renderCalendarStrip();
+            renderSleep();
+            renderTasks();
+            renderHabits();
+            renderExpenses();
+            renderCalls();
+            updateProgressGauge();
+        }
+
+        /* ===================================================
+           ۳. بخش خواب (ساعت عددی + آیکون ماه)
+           =================================================== */
+        const sleepInput = document.getElementById('sleepHoursInput');
+        const sleepMoonsDisplay = document.getElementById('sleepMoonsDisplay');
+
+        function renderSleep() {
+            sleepInput.value = currentDayData.sleepHours || '';
+            updateMoons(currentDayData.sleepHours);
+        }
+
+        function updateMoons(count) {
+            sleepMoonsDisplay.innerHTML = '';
+            const hours = parseInt(count) || 0;
+            for (let i = 0; i < Math.min(hours, 24); i++) {
+                const moon = document.createElement('span');
+                moon.className = 'moon-icon';
+                moon.textContent = '🌙';
+                sleepMoonsDisplay.appendChild(moon);
+            }
+        }
+
+        sleepInput.addEventListener('input', (e) => {
+            const val = parseInt(e.target.value) || 0;
+            currentDayData.sleepHours = val;
+            updateMoons(val);
+            saveDayData();
+        });
+
+        /* ===================================================
+           ۴. کارهای پیشرفته (متواطی / مشکک / زیرکارها)
+           =================================================== */
+        const taskCreateForm = document.getElementById('taskCreateForm');
+        const taskTitleInput = document.getElementById('taskTitleInput');
+        const taskTypeSelect = document.getElementById('taskTypeSelect');
+        const taskListContainer = document.getElementById('taskListContainer');
+
+        taskCreateForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const title = taskTitleInput.value.trim();
+            if (!title) return;
+
+            const newTask = {
+                id: Date.now(),
+                title: title,
+                type: taskTypeSelect.value, // 'mutewati' یا 'mushakkak'
+                done: false,                // برای متواطی
+                percent: 0,                 // برای مشکک
+                subtasks: []
+            };
+
+            currentDayData.tasks.push(newTask);
+            taskTitleInput.value = '';
+            saveDayData();
+            renderTasks();
+        });
+
+        function renderTasks() {
+            taskListContainer.innerHTML = '';
+
+            if (currentDayData.tasks.length === 0) {
+                taskListContainer.innerHTML = '<li style="text-align:center; color:#94a3b8; padding:20px; font-size:0.9rem;">هنوز کاری برای این روز تعریف نشده است.</li>';
+                return;
+            }
+
+            currentDayData.tasks.forEach(task => {
+                const li = document.createElement('li');
+                const isCompleted = task.type === 'mutewati' ? task.done : (task.percent === 100);
+                li.className = `task-card ${isCompleted ? 'completed' : ''}`;
+
+                let taskActionHtml = '';
+
+                if (task.type === 'mutewati') {
+                    taskActionHtml = `
+                        <input type="checkbox" style="width:20px; height:20px; accent-color:var(--azure-primary); cursor:pointer;" 
+                               ${task.done ? 'checked' : ''} onchange="toggleMutewatiTask(${task.id})">
+                    `;
+                } else {
+                    // استوانه آب سیال
+                    taskActionHtml = `
+                        <div class="cylinder-wrapper">
+                            <div class="cylinder-controls">
+                                <span class="cylinder-percent-text">${task.percent}٪</span>
+                                <input type="range" min="0" max="100" value="${task.percent}" class="range-mini" 
+                                       oninput="updateMushakkakPercent(${task.id}, this.value)">
+                            </div>
+                            <div class="liquid-cylinder" title="${task.percent}٪ انجام شده">
+                                <div class="liquid-fill" style="height: ${task.percent}%;">
+                                    <div class="liquid-wave"></div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                // رندر زیرکارها
+                let subtasksHtml = task.subtasks.map(st => `
+                    <li class="subtask-item ${st.done ? 'done' : ''}">
+                        <label>
+                            <input type="checkbox" ${st.done ? 'checked' : ''} onchange="toggleSubtask(${task.id}, ${st.id})">
+                            <span>${escapeHtml(st.title)}</span>
+                        </label>
+                        <button onclick="deleteSubtask(${task.id}, ${st.id})" style="border:none; background:none; color:#cbd5e1; cursor:pointer;">✕</button>
+                    </li>
+                `).join('');
+
+                li.innerHTML = `
+                    <div class="task-main-row">
+                        <div class="task-label-group">
+                            <span class="task-type-badge ${task.type === 'mutewati' ? 'badge-mutewati' : 'badge-mushakkak'}">
+                                ${task.type === 'mutewati' ? 'متواطی' : 'مشکک'}
+                            </span>
+                            <span class="task-text">${escapeHtml(task.title)}</span>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:10px;">
+                            ${taskActionHtml}
+                            <button class="btn btn-danger-soft" onclick="deleteTask(${task.id})" style="padding:4px 8px; font-size:0.8rem;">حذف</button>
+                        </div>
+                    </div>
+
+                    <!-- بخش زیرکارها -->
+                    <div class="subtasks-section">
+                        <ul class="subtask-list" id="subList_${task.id}">
+                            ${subtasksHtml}
+                        </ul>
+                        <form class="subtask-form" onsubmit="addSubtask(event, ${task.id})">
+                            <input type="text" placeholder="+ افزودن زیرکار جدید..." id="subInput_${task.id}" required>
+                            <button type="submit" class="btn btn-subtask">افزودن</button>
+                        </form>
+                    </div>
+                `;
+
+                taskListContainer.appendChild(li);
             });
         }
 
-        /* --- ۲. مدیریت وظایف و نوار درصد --- */
-        const taskForm = document.getElementById('taskForm');
-        const taskInput = document.getElementById('taskInput');
-        const taskList = document.getElementById('taskList');
-        const progressBar = document.getElementById('progressBar');
-        const progressPercent = document.getElementById('progressPercent');
-        const postponeBtn = document.getElementById('postponeBtn');
+        window.toggleMutewatiTask = function(taskId) {
+            currentDayData.tasks = currentDayData.tasks.map(t => {
+                if (t.id === taskId) t.done = !t.done;
+                return t;
+            });
+            saveDayData();
+            renderTasks();
+        };
 
-        function updateProgress() {
-            const total = state.tasks.length;
-            if (total === 0) {
-                progressBar.style.width = '0%';
-                progressPercent.textContent = '۰٪';
+        window.updateMushakkakPercent = function(taskId, value) {
+            currentDayData.tasks = currentDayData.tasks.map(t => {
+                if (t.id === taskId) t.percent = parseInt(value);
+                return t;
+            });
+            saveDayData();
+            renderTasks();
+        };
+
+        window.deleteTask = function(taskId) {
+            currentDayData.tasks = currentDayData.tasks.filter(t => t.id !== taskId);
+            saveDayData();
+            renderTasks();
+        };
+
+        window.addSubtask = function(e, taskId) {
+            e.preventDefault();
+            const input = document.getElementById(`subInput_${taskId}`);
+            const title = input.value.trim();
+            if (!title) return;
+
+            currentDayData.tasks = currentDayData.tasks.map(t => {
+                if (t.id === taskId) {
+                    t.subtasks.push({ id: Date.now(), title: title, done: false });
+                }
+                return t;
+            });
+
+            input.value = '';
+            saveDayData();
+            renderTasks();
+        };
+
+        window.toggleSubtask = function(taskId, subId) {
+            currentDayData.tasks = currentDayData.tasks.map(t => {
+                if (t.id === taskId) {
+                    t.subtasks = t.subtasks.map(st => st.id === subId ? { ...st, done: !st.done } : st);
+                }
+                return t;
+            });
+            saveDayData();
+            renderTasks();
+        };
+
+        window.deleteSubtask = function(taskId, subId) {
+            currentDayData.tasks = currentDayData.tasks.map(t => {
+                if (t.id === taskId) {
+                    t.subtasks = t.subtasks.filter(st => st.id !== subId);
+                }
+                return t;
+            });
+            saveDayData();
+            renderTasks();
+        };
+
+        // انتقال هوشمند کارهای انجام نشده به فردا در تقویم
+        window.transferIncompleteTasksToTomorrow = function() {
+            const incompleteTasks = currentDayData.tasks.filter(t => {
+                return (t.type === 'mutewati' && !t.done) || (t.type === 'mushakkak' && t.percent < 100);
+            });
+
+            if (incompleteTasks.length === 0) {
+                alert('هیچ کار انجام‌نشده‌ای برای انتقال وجود ندارد! همگی کامل شده‌اند 🎉');
                 return;
             }
-            const completed = state.tasks.filter(t => t.done).length;
-            const percentage = Math.round((completed / total) * 100);
-            progressBar.style.width = `${percentage}%`;
-            progressPercent.textContent = `${percentage.toLocaleString('fa-IR')}٪`;
-        }
 
-        function renderTasks() {
-            taskList.innerHTML = '';
-            if (state.tasks.length === 0) {
-                taskList.innerHTML = '<li style="text-align:center; padding:15px; color:#94a3b8; font-size:0.88rem;">هنوز کاری ثبت نکرده‌اید!</li>';
-            } else {
-                state.tasks.forEach(task => {
-                    const li = document.createElement('li');
-                    li.className = `task-item ${task.done ? 'done' : ''}`;
+            // تاریخ روز بعد
+            const tomorrow = new Date(activeDate);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            const tomorrowKey = STORAGE_PREFIX + getActiveDateKey(tomorrow);
 
-                    li.innerHTML = `
-                        <label class="task-label">
-                            <input type="checkbox" ${task.done ? 'checked' : ''} onchange="toggleTask(${task.id})">
-                            <span class="task-text">${escapeHtml(task.text)}</span>
-                        </label>
-                        <button class="btn-delete" onclick="deleteTask(${task.id})" title="حذف">✕</button>
-                    `;
-                    taskList.appendChild(li);
-                });
+            // بارگذاری یا ساخت روز بعد
+            let tomorrowData = defaultDayData();
+            const rawTomorrow = localStorage.getItem(tomorrowKey);
+            if (rawTomorrow) {
+                try { tomorrowData = JSON.parse(rawTomorrow); } catch(e){}
             }
-            updateProgress();
+
+            // انتقال کارها
+            tomorrowData.tasks.push(...incompleteTasks);
+            localStorage.setItem(tomorrowKey, JSON.stringify(tomorrowData));
+
+            // حذف کارهای انجام نشده از روز جاری
+            currentDayData.tasks = currentDayData.tasks.filter(t => {
+                return (t.type === 'mutewati' && t.done) || (t.type === 'mushakkak' && t.percent === 100);
+            });
+
+            saveDayData();
+            renderTasks();
+            showToast('کارهای انجام نشده به روز فردا در تقویم منتقل شدند ⏩');
+        };
+
+        /* ===================================================
+           ۵. محاسبه و نمایش نمودار درصد کل پیشرفت روز
+           =================================================== */
+        function updateProgressGauge() {
+            const tasks = currentDayData.tasks;
+            const label = document.getElementById('progressPercentageLabel');
+            const bar = document.getElementById('dailyProgressBar');
+
+            if (!tasks || tasks.length === 0) {
+                label.textContent = '۰٪';
+                bar.style.width = '0%';
+                return;
+            }
+
+            let totalPercent = 0;
+            tasks.forEach(t => {
+                if (t.type === 'mutewati') {
+                    totalPercent += t.done ? 100 : 0;
+                } else {
+                    totalPercent += t.percent;
+                }
+            });
+
+            const avg = Math.round(totalPercent / tasks.length);
+            label.textContent = `${avg}٪`;
+            bar.style.width = `${avg}%`;
         }
 
-        taskForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const text = taskInput.value.trim();
-            if (!text) return;
+        /* ===================================================
+           ۶. بخش عادت‌سنج تیک‌زدنی (Habit Tracker)
+           =================================================== */
+        const habitPalette = document.getElementById('habitPalette');
+        const habitContainer = document.getElementById('habitContainer');
+        const habitTitleInput = document.getElementById('habitTitleInput');
 
-            state.tasks.push({
+        function initHabitPalette() {
+            habitPalette.innerHTML = '';
+            AVAILABLE_ICONS.forEach(icon => {
+                const span = document.createElement('span');
+                span.className = `palette-icon ${icon === selectedHabitIcon ? 'selected' : ''}`;
+                span.textContent = icon;
+                span.onclick = () => {
+                    selectedHabitIcon = icon;
+                    document.querySelectorAll('.palette-icon').forEach(el => el.classList.remove('selected'));
+                    span.classList.add('selected');
+                };
+                habitPalette.appendChild(span);
+            });
+        }
+
+        function addNewHabit() {
+            const title = habitTitleInput.value.trim();
+            if (!title) return;
+
+            const newHabit = {
                 id: Date.now(),
-                text: text,
+                title: title,
+                icon: selectedHabitIcon
+            };
+
+            globalData.habitsCatalog.push(newHabit);
+            habitTitleInput.value = '';
+            saveGlobalData();
+            renderHabits();
+        }
+
+        function renderHabits() {
+            habitContainer.innerHTML = '';
+
+            if (globalData.habitsCatalog.length === 0) {
+                habitContainer.innerHTML = '<div style="grid-column:1/-1; text-align:center; color:#94a3b8; padding:20px; font-size:0.88rem;">هیچ عادتی اضافه نشده است. عنوان عادت را بنویسید، آیکون دلخواه را انتخاب کنید و روی دکمه کلیک کنید.</div>';
+                return;
+            }
+
+            globalData.habitsCatalog.forEach(habit => {
+                const isChecked = currentDayData.checkedHabits.includes(habit.id);
+                const box = document.createElement('div');
+                box.className = `habit-box ${isChecked ? 'checked' : ''}`;
+
+                box.innerHTML = `
+                    <button class="habit-delete-btn" onclick="event.stopPropagation(); deleteHabit(${habit.id})">✕</button>
+                    <span class="h-icon">${habit.icon}</span>
+                    <span class="h-title">${escapeHtml(habit.title)}</span>
+                `;
+
+                box.onclick = () => {
+                    if (currentDayData.checkedHabits.includes(habit.id)) {
+                        currentDayData.checkedHabits = currentDayData.checkedHabits.filter(id => id !== habit.id);
+                    } else {
+                        currentDayData.checkedHabits.push(habit.id);
+                    }
+                    saveDayData();
+                    renderHabits();
+                };
+
+                habitContainer.appendChild(box);
+            });
+        }
+
+        window.deleteHabit = function(habitId) {
+            if (confirm('این عادت حذف شود؟')) {
+                globalData.habitsCatalog = globalData.habitsCatalog.filter(h => h.id !== habitId);
+                saveGlobalData();
+                renderHabits();
+            }
+        };
+
+        /* ===================================================
+           ۷. بودجه ماهانه و هزینه‌ها
+           =================================================== */
+        const monthlyBudgetInput = document.getElementById('monthlyBudgetInput');
+        const expenseCreateForm = document.getElementById('expenseCreateForm');
+        const expenseTitleInput = document.getElementById('expenseTitleInput');
+        const expenseAmountInput = document.getElementById('expenseAmountInput');
+        const expensesListContainer = document.getElementById('expensesListContainer');
+        const totalExpensesDisplay = document.getElementById('totalExpensesDisplay');
+        const remainingBudgetDisplay = document.getElementById('remainingBudgetDisplay');
+
+        monthlyBudgetInput.addEventListener('input', (e) => {
+            globalData.monthlyBudget = parseFloat(e.target.value) || 0;
+            saveGlobalData();
+            calculateBudgetOverview();
+        });
+
+        expenseCreateForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const title = expenseTitleInput.value.trim();
+            const amount = parseFloat(expenseAmountInput.value) || 0;
+            if (!title || amount <= 0) return;
+
+            currentDayData.expenses.push({ id: Date.now(), title, amount });
+            expenseTitleInput.value = '';
+            expenseAmountInput.value = '';
+            saveDayData();
+            renderExpenses();
+        });
+
+        function renderExpenses() {
+            monthlyBudgetInput.value = globalData.monthlyBudget || '';
+            expensesListContainer.innerHTML = '';
+
+            currentDayData.expenses.forEach(item => {
+                const li = document.createElement('li');
+                li.className = 'expense-row';
+                li.innerHTML = `
+                    <span>${escapeHtml(item.title)}</span>
+                    <div>
+                        <strong style="color:var(--mustard-dark);">${item.amount.toLocaleString('fa-IR')} تومان</strong>
+                        <button onclick="deleteExpense(${item.id})" style="border:none; background:none; color:#cbd5e1; cursor:pointer; margin-right:8px;">✕</button>
+                    </div>
+                `;
+                expensesListContainer.appendChild(li);
+            });
+
+            calculateBudgetOverview();
+        }
+
+        function calculateBudgetOverview() {
+            // محاسبه کل هزینه‌های ثبت‌شده در این روز
+            let dailyTotal = currentDayData.expenses.reduce((sum, item) => sum + item.amount, 0);
+            totalExpensesDisplay.textContent = `${dailyTotal.toLocaleString('fa-IR')} تومان`;
+
+            const remaining = (globalData.monthlyBudget || 0) - dailyTotal;
+            remainingBudgetDisplay.textContent = `${remaining.toLocaleString('fa-IR')} تومان`;
+
+            if (remaining < 0) {
+                remainingBudgetDisplay.style.color = 'var(--danger)';
+            } else {
+                remainingBudgetDisplay.style.color = 'var(--turquoise-main)';
+            }
+        }
+
+        window.deleteExpense = function(id) {
+            currentDayData.expenses = currentDayData.expenses.filter(i => i.id !== id);
+            saveDayData();
+            renderExpenses();
+        };
+
+        /* ===================================================
+           ۸. بخش تماس‌ها و پیگیری‌ها
+           =================================================== */
+        const callCreateForm = document.getElementById('callCreateForm');
+        const callNameInput = document.getElementById('callNameInput');
+        const callTopicInput = document.getElementById('callTopicInput');
+        const callListContainer = document.getElementById('callListContainer');
+
+        callCreateForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = callNameInput.value.trim();
+            const topic = callTopicInput.value.trim();
+            if (!name) return;
+
+            currentDayData.calls.push({
+                id: Date.now(),
+                name,
+                topic,
                 done: false
             });
 
-            taskInput.value = '';
-            saveState();
-            renderTasks();
+            callNameInput.value = '';
+            callTopicInput.value = '';
+            saveDayData();
+            renderCalls();
         });
 
-        window.toggleTask = function(id) {
-            state.tasks = state.tasks.map(t => t.id === id ? { ...t, done: !t.done } : t);
-            saveState();
-            renderTasks();
-        };
+        function renderCalls() {
+            callListContainer.innerHTML = '';
 
-        window.deleteTask = function(id) {
-            state.tasks = state.tasks.filter(t => t.id !== id);
-            saveState();
-            renderTasks();
-        };
-
-        // دکمه انتقال کارهای انجام‌نشده به فردا
-        postponeBtn.addEventListener('click', () => {
-            const uncompletedTasks = state.tasks.filter(t => !t.done);
-            if (uncompletedTasks.length === state.tasks.length && state.tasks.length > 0) {
-                alert('کارهای انجام‌شده‌ای برای حذف وجود ندارد؛ تمام وظایف فعلی برای پیگیری فردا باقی مانده‌اند.');
+            if (currentDayData.calls.length === 0) {
+                callListContainer.innerHTML = '<li style="text-align:center; color:#94a3b8; font-size:0.85rem; padding:15px;">هیچ تماسی برای پیگیری ثبت نشده است.</li>';
                 return;
             }
-            if (confirm('کارهای تکمیل‌شده پاک شوند و کارهای انجام‌نشده برای ادامه باقی بمانند؟')) {
-                state.tasks = uncompletedTasks;
-                saveState();
-                renderTasks();
-            }
-        });
 
-        /* --- ۹. خرج و برج روزانه --- */
-        const expenseForm = document.getElementById('expenseForm');
-        const expenseTitle = document.getElementById('expenseTitle');
-        const expenseAmount = document.getElementById('expenseAmount');
-        const expenseList = document.getElementById('expenseList');
-        const totalExpenseAmount = document.getElementById('totalExpenseAmount');
-
-        function renderExpenses() {
-            expenseList.innerHTML = '';
-            let total = 0;
-
-            if (state.expenses.length === 0) {
-                expenseList.innerHTML = '<li style="text-align:center; padding:12px; color:#94a3b8; font-size:0.85rem;">هنوز هزینه‌ای ثبت نشده است.</li>';
-            } else {
-                state.expenses.forEach(item => {
-                    total += Number(item.amount);
-                    const li = document.createElement('li');
-                    li.className = 'expense-item';
-                    li.innerHTML = `
-                        <span>${escapeHtml(item.title)}</span>
+            currentDayData.calls.forEach(call => {
+                const li = document.createElement('li');
+                li.className = `call-item ${call.done ? 'done' : ''}`;
+                li.innerHTML = `
+                    <div class="call-info">
+                        <input type="checkbox" ${call.done ? 'checked' : ''} onchange="toggleCall(${call.id})">
                         <div>
-                            <span class="expense-amount">${Number(item.amount).toLocaleString('fa-IR')} تومان</span>
-                            <button class="btn-delete" onclick="deleteExpense(${item.id})">✕</button>
+                            <div class="call-name">${escapeHtml(call.name)}</div>
+                            ${call.topic ? `<div class="call-topic">${escapeHtml(call.topic)}</div>` : ''}
                         </div>
-                    `;
-                    expenseList.appendChild(li);
-                });
-            }
-
-            totalExpenseAmount.textContent = `${total.toLocaleString('fa-IR')} تومان`;
+                    </div>
+                    <button onclick="deleteCall(${call.id})" class="btn-danger-soft" style="border:none; padding:4px 8px; border-radius:6px; cursor:pointer;">✕</button>
+                `;
+                callListContainer.appendChild(li);
+            });
         }
 
-        expenseForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const title = expenseTitle.value.trim();
-            const amount = parseFloat(expenseAmount.value);
-
-            if (!title || isNaN(amount) || amount <= 0) return;
-
-            state.expenses.push({
-                id: Date.now(),
-                title: title,
-                amount: amount
-            });
-
-            expenseTitle.value = '';
-            expenseAmount.value = '';
-            saveState();
-            renderExpenses();
-        });
-
-        window.deleteExpense = function(id) {
-            state.expenses = state.expenses.filter(item => item.id !== id);
-            saveState();
-            renderExpenses();
+        window.toggleCall = function(id) {
+            currentDayData.calls = currentDayData.calls.map(c => c.id === id ? { ...c, done: !c.done } : c);
+            saveDayData();
+            renderCalls();
         };
 
-        // امنیت متنی
-        function escapeHtml(text) {
+        window.deleteCall = function(id) {
+            currentDayData.calls = currentDayData.calls.filter(c => c.id !== id);
+            saveDayData();
+            renderCalls();
+        };
+
+        // تابع کمکی برای پیشگیری از XSS
+        function escapeHtml(str) {
             const div = document.createElement('div');
-            div.textContent = text;
+            div.textContent = str;
             return div.innerHTML;
         }
 
-        /* --- راه‌اندازی اولیه --- */
+        /* ===================================================
+           راه‌اندازی اولیه برنامه
+           =================================================== */
         function initApp() {
-            setPersianDate();
-            loadState();
-            bindSimpleInputs();
-            initSleep();
-            renderHabits();
-            renderTasks();
-            renderExpenses();
+            loadGlobalData();
+            initHabitPalette();
+            switchDate();
         }
 
         initApp();
