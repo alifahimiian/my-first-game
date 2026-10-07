@@ -3,661 +3,661 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>پلنر روزانه و مدیریت زندگی</title>
-    <!-- بارگذاری فونت وزیرمتن و فونت قرآنی امیری برای بسم الله -->
+    <title>پلنر روزانه و مدیریت شخصی پیشرفته</title>
+    <!-- Google Font: Vazirmatn -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --azure-deep: #0f275e;
-            --azure-primary: #1e3a8a;
-            --azure-light: #dbeafe;
-            --turquoise-main: #0d9488;
-            --turquoise-accent: #06b6d4;
-            --turquoise-light: #ccfbf1;
-            --mustard-main: #d97706;
-            --mustard-light: #fef3c7;
-            --mustard-dark: #92400e;
+            /* پالت رنگی اختصاصی */
+            --lapis-lazuli: #1e3a8a; /* لاجوردی عمیق */
+            --lapis-light: #2563eb;
+            --turquoise: #0d9488;    /* فیروزه‌ای */
+            --turquoise-light: #14b8a6;
+            --turquoise-soft: rgba(20, 184, 166, 0.12);
+            --mustard: #d97706;      /* خردلی / طلایی گرم */
+            --mustard-light: #f59e0b;
+            --mustard-soft: rgba(245, 158, 11, 0.15);
             
-            --bg-color: #f8fafc;
-            --glass-bg: rgba(255, 255, 255, 0.85);
-            --glass-border: rgba(255, 255, 255, 0.95);
-            --shadow-soft: 0 10px 30px rgba(15, 39, 94, 0.06);
-            --danger: #ef4444;
-            --success: #10b981;
-            --radius-lg: 22px;
-            --radius-md: 14px;
+            --bg-gradient: linear-gradient(135deg, #f0fdfa 0%, #e0f2fe 50%, #fef3c7 100%);
+            --glass-bg: rgba(255, 255, 255, 0.78);
+            --glass-card: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.9);
+            --glass-shadow: 0 12px 35px -8px rgba(30, 58, 138, 0.08), 0 4px 12px rgba(0, 0, 0, 0.03);
+            
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --radius-xl: 24px;
+            --radius-lg: 18px;
+            --radius-md: 12px;
+            --transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
             font-family: 'Vazirmatn', sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            background: linear-gradient(135deg, #f0fdfa 0%, #eff6ff 45%, #fffbeb 100%);
+            background: var(--bg-gradient);
             background-attachment: fixed;
+            color: var(--text-main);
             min-height: 100vh;
-            color: #1e293b;
-            padding: 20px 14px 60px;
+            padding: 24px 16px 60px;
+            overflow-x: hidden;
         }
 
         .container {
-            max-width: 1240px;
+            max-width: 1380px;
             margin: 0 auto;
         }
 
-        /* ۱. سربرگ بسم الله الرحمن الرحیم */
+        /* ۱. سربرگ */
         .bismillah-header {
             text-align: center;
-            margin-bottom: 20px;
-            padding: 12px;
+            margin-bottom: 24px;
         }
 
         .bismillah-text {
-            font-family: 'Amiri', serif;
             font-size: 1.85rem;
-            color: var(--azure-deep);
-            letter-spacing: 1px;
-            text-shadow: 0 2px 4px rgba(217, 119, 6, 0.15);
+            font-weight: 800;
+            color: var(--lapis-lazuli);
+            text-shadow: 0 2px 8px rgba(30, 58, 138, 0.12);
+            letter-spacing: 0.5px;
+            position: relative;
             display: inline-block;
-            border-bottom: 2px solid var(--mustard-main);
-            padding-bottom: 6px;
+            padding: 4px 28px;
+        }
+
+        .bismillah-text::before, .bismillah-text::after {
+            content: "✦";
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--mustard);
+            font-size: 1.1rem;
+        }
+        .bismillah-text::before { right: 0; }
+        .bismillah-text::after { left: 0; }
+
+        /* کارت‌های شیشه‌ای کلی */
+        .glass-panel {
+            background: var(--glass-card);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--glass-shadow);
+            padding: 22px;
+            transition: var(--transition);
+        }
+
+        .panel-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--lapis-lazuli);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 18px;
+            border-bottom: 2px dashed rgba(20, 184, 166, 0.2);
+            padding-bottom: 10px;
+        }
+
+        .panel-title span.badge {
+            background: var(--mustard-soft);
+            color: var(--mustard);
+            font-size: 0.8rem;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-weight: 600;
         }
 
         /* ۲. تقویم تعاملی */
-        .calendar-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(14px);
-            border: 1px solid var(--glass-border);
-            border-radius: var(--radius-lg);
-            padding: 20px 24px;
-            box-shadow: var(--shadow-soft);
-            margin-bottom: 24px;
+        .calendar-strip {
             display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .calendar-top {
-            display: flex;
+            align-items: center;
             justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
             gap: 12px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
         }
 
-        .current-date-title {
-            font-size: 1.25rem;
-            font-weight: 800;
-            color: var(--azure-deep);
-        }
-
-        .date-controllers {
+        .nav-btn {
+            background: white;
+            border: 1px solid rgba(30, 58, 138, 0.15);
+            color: var(--lapis-lazuli);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
             display: flex;
             align-items: center;
-            gap: 8px;
+            justify-content: center;
+            transition: var(--transition);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
         }
 
-        .btn-date {
-            background: var(--azure-light);
-            border: none;
-            color: var(--azure-primary);
-            padding: 6px 14px;
-            border-radius: 50px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .btn-date:hover {
-            background: var(--azure-primary);
+        .nav-btn:hover {
+            background: var(--lapis-lazuli);
             color: white;
+            transform: scale(1.05);
         }
 
-        .week-strip {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 8px;
+        .days-container {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 6px 2px;
+            flex: 1;
+            scrollbar-width: thin;
+            scrollbar-color: var(--turquoise) transparent;
         }
 
-        @media (max-width: 640px) {
-            .week-strip {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-
-        .day-pill {
+        .day-card {
+            flex: 1;
+            min-width: 90px;
             background: rgba(255, 255, 255, 0.7);
-            border: 1.5px solid #e2e8f0;
-            border-radius: var(--radius-md);
-            padding: 10px 6px;
+            border: 2px solid transparent;
+            border-radius: var(--radius-lg);
+            padding: 12px 8px;
             text-align: center;
             cursor: pointer;
-            transition: all 0.25s ease;
+            transition: var(--transition);
         }
 
-        .day-pill:hover {
-            border-color: var(--turquoise-main);
-            transform: translateY(-2px);
+        .day-card:hover {
+            transform: translateY(-3px);
+            background: white;
+            border-color: rgba(20, 184, 166, 0.4);
         }
 
-        .day-pill.active {
-            background: linear-gradient(135deg, var(--turquoise-main), var(--azure-primary));
-            border-color: transparent;
+        .day-card.active {
+            background: linear-gradient(135deg, var(--lapis-lazuli), var(--lapis-light));
             color: white;
-            box-shadow: 0 6px 16px rgba(13, 148, 136, 0.3);
+            box-shadow: 0 8px 20px rgba(30, 58, 138, 0.25);
+            border-color: var(--mustard);
+            transform: translateY(-4px);
         }
 
-        .day-name {
-            font-size: 0.78rem;
-            display: block;
-            opacity: 0.85;
-            margin-bottom: 2px;
-        }
+        .day-card .day-name { font-size: 0.82rem; font-weight: 500; opacity: 0.85; margin-bottom: 4px; }
+        .day-card.active .day-name { opacity: 0.95; }
+        .day-card .day-num { font-size: 1.3rem; font-weight: 800; }
 
-        .day-number {
-            font-size: 1.15rem;
-            font-weight: 800;
-        }
-
-        /* ساختار شبکه اصلی پلنر */
-        .grid-layout {
+        /* لایه‌بندی اصلی */
+        .main-layout {
             display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 22px;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 24px;
         }
 
-        .col-12 { grid-column: span 12; }
-        .col-8 { grid-column: span 8; }
-        .col-7 { grid-column: span 7; }
-        .col-6 { grid-column: span 6; }
-        .col-5 { grid-column: span 5; }
-        .col-4 { grid-column: span 4; }
-
-        @media (max-width: 992px) {
-            .col-8, .col-7, .col-6, .col-5, .col-4 {
-                grid-column: span 12;
+        @media (max-width: 1024px) {
+            .main-layout {
+                grid-template-columns: 1fr;
             }
         }
 
-        .card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(14px);
-            border: 1px solid var(--glass-border);
+        /* ۳. دویدن‌های امروزم */
+        .running-box {
+            background: linear-gradient(135deg, rgba(20, 184, 166, 0.12), rgba(245, 158, 11, 0.08));
             border-radius: var(--radius-lg);
-            padding: 24px;
-            box-shadow: var(--shadow-soft);
-            transition: transform 0.2s ease;
-        }
-
-        .card-header {
+            padding: 14px 18px;
             display: flex;
             align-items: center;
+            gap: 12px;
+            margin-bottom: 22px;
+            border: 1px solid rgba(20, 184, 166, 0.3);
+        }
+
+        .running-box span.icon {
+            font-size: 1.6rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+
+        .running-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            font-size: 0.98rem;
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        /* ۵. نوار پیشرفت کل */
+        .progress-section {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 16px;
+            margin-bottom: 22px;
+            border: 1px solid rgba(30, 58, 138, 0.08);
+            box-shadow: 0 4px 14px rgba(0,0,0,0.02);
+        }
+
+        .progress-header {
+            display: flex;
             justify-content: space-between;
-            margin-bottom: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            color: var(--lapis-lazuli);
         }
 
-        .card-title-group {
+        .progress-bar-bg {
+            height: 14px;
+            background: #e2e8f0;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--turquoise), var(--mustard));
+            border-radius: 20px;
+            width: 0%;
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ۴. کارهای پیشرفته (متواطی / مشکک) */
+        .tasks-header {
             display: flex;
+            justify-content: space-between;
             align-items: center;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
             gap: 10px;
         }
 
-        .card-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.25rem;
-        }
-
-        .icon-turq { background: var(--turquoise-light); color: var(--turquoise-main); }
-        .icon-azure { background: var(--azure-light); color: var(--azure-primary); }
-        .icon-mustard { background: var(--mustard-light); color: var(--mustard-main); }
-
-        .card-title {
-            font-size: 1.1rem;
-            font-weight: 800;
-            color: var(--azure-deep);
-        }
-
-        /* فرم‌ها و اینپوت‌ها */
-        input[type="text"], input[type="number"], select, textarea {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            border: 1.5px solid #cbd5e1;
+        .btn-smart {
+            background: var(--mustard-soft);
+            color: var(--mustard);
+            border: 1px solid rgba(217, 119, 6, 0.3);
             border-radius: var(--radius-md);
-            padding: 10px 14px;
-            font-size: 0.92rem;
-            color: #0f172a;
-            outline: none;
-            transition: all 0.2s ease;
-        }
-
-        input:focus, select:focus, textarea:focus {
-            border-color: var(--turquoise-main);
-            box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.15);
-        }
-
-        .btn {
-            border: none;
-            padding: 10px 18px;
-            border-radius: var(--radius-md);
+            padding: 8px 14px;
+            font-size: 0.85rem;
             font-weight: 700;
-            font-size: 0.9rem;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: var(--transition);
             display: inline-flex;
             align-items: center;
-            justify-content: center;
             gap: 6px;
         }
 
-        .btn-primary {
-            background: var(--azure-primary);
+        .btn-smart:hover {
+            background: var(--mustard);
             color: white;
-        }
-        .btn-primary:hover { background: var(--azure-deep); }
-
-        .btn-danger-soft {
-            background: #fee2e2;
-            color: var(--danger);
-        }
-        .btn-danger-soft:hover { background: #fecaca; }
-
-        /* ۳. بخش خواب عددی + آیکون ماه */
-        .sleep-row {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            flex-wrap: wrap;
+            transform: translateY(-2px);
         }
 
-        .sleep-input-wrapper {
-            max-width: 120px;
-        }
-
-        .sleep-moons-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 4px;
-            font-size: 1.5rem;
-            min-height: 38px;
-            align-items: center;
-        }
-
-        .moon-icon {
-            animation: moonPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: inline-block;
-            filter: drop-shadow(0 2px 4px rgba(217, 119, 6, 0.3));
-        }
-
-        @keyframes moonPop {
-            0% { transform: scale(0); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        /* ۴. بخش پیشرفته کارها */
         .task-creator {
-            display: grid;
-            grid-template-columns: 2fr 1fr auto;
+            background: white;
+            padding: 14px;
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(30, 58, 138, 0.1);
+            margin-bottom: 18px;
+            display: flex;
+            flex-direction: column;
             gap: 10px;
-            margin-bottom: 20px;
         }
 
-        @media (max-width: 600px) {
-            .task-creator { grid-template-columns: 1fr; }
+        .task-creator-row {
+            display: flex;
+            gap: 10px;
         }
 
-        .task-list {
-            list-style: none;
+        .form-input {
+            flex: 1;
+            border: 1px solid #cbd5e1;
+            padding: 10px 14px;
+            border-radius: var(--radius-md);
+            outline: none;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .form-input:focus {
+            border-color: var(--turquoise);
+            box-shadow: 0 0 0 3px var(--turquoise-soft);
+        }
+
+        .form-select {
+            border: 1px solid #cbd5e1;
+            padding: 10px 14px;
+            border-radius: var(--radius-md);
+            outline: none;
+            background: white;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--turquoise), #0f766e);
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-primary:hover {
+            filter: brightness(1.08);
+            transform: translateY(-2px);
+        }
+
+        .tasks-list {
             display: flex;
             flex-direction: column;
             gap: 14px;
-            max-height: 480px;
-            overflow-y: auto;
-            padding-left: 6px;
         }
 
         .task-card {
-            background: rgba(255, 255, 255, 0.9);
-            border: 1.5px solid #e2e8f0;
-            border-radius: var(--radius-md);
-            padding: 14px;
-            transition: all 0.2s ease;
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 16px;
+            border: 1px solid rgba(0,0,0,0.06);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            transition: var(--transition);
         }
 
         .task-card:hover {
-            border-color: #cbd5e1;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
         }
 
-        .task-main-row {
+        .task-main {
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 12px;
         }
 
-        .task-label-group {
+        .task-left {
             display: flex;
             align-items: center;
             gap: 12px;
             flex: 1;
         }
 
-        .task-type-badge {
-            font-size: 0.72rem;
-            padding: 3px 8px;
-            border-radius: 50px;
-            font-weight: 700;
+        .task-title {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--text-main);
         }
 
-        .badge-mutewati { background: var(--azure-light); color: var(--azure-primary); }
-        .badge-mushakkak { background: var(--turquoise-light); color: var(--turquoise-main); }
-
-        .task-text {
-            font-weight: 700;
-            font-size: 0.96rem;
-            color: #1e293b;
-        }
-
-        .task-card.completed .task-text {
+        .task-title.completed {
             text-decoration: line-through;
-            color: #94a3b8;
+            color: var(--text-muted);
         }
 
-        /* استوانه آب سیال (برای کار مشکک) */
-        .cylinder-wrapper {
+        .checkbox-custom {
+            width: 22px;
+            height: 22px;
+            cursor: pointer;
+            accent-color: var(--turquoise);
+        }
+
+        /* استوانه آب سیال برای فعالیت‌های مشکک */
+        .cylinder-container {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
-        .liquid-cylinder {
-            width: 30px;
-            height: 65px;
-            border: 2px solid var(--turquoise-main);
-            border-radius: 20px;
+        .fluid-cylinder {
+            width: 38px;
+            height: 60px;
+            border-radius: 18px;
+            border: 2px solid var(--lapis-lazuli);
             position: relative;
             overflow: hidden;
-            background: rgba(204, 251, 241, 0.3);
-            box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.1);
-            flex-shrink: 0;
+            background: #f8fafc;
+            box-shadow: inset 0 2px 6px rgba(0,0,0,0.1);
         }
 
-        .liquid-fill {
+        .fluid-water {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(180deg, var(--turquoise-accent) 0%, var(--turquoise-main) 100%);
-            transition: height 0.35s ease;
-            border-radius: 0 0 16px 16px;
+            height: 0%;
+            background: linear-gradient(180deg, var(--turquoise-light), var(--lapis-light));
+            transition: height 0.4s ease;
         }
 
-        .liquid-wave {
+        .fluid-water::before {
+            content: "";
             position: absolute;
             top: -6px;
             left: -50%;
             width: 200%;
             height: 12px;
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: 40%;
-            animation: waveMotion 2.5s infinite linear;
+            background: rgba(255,255,255,0.4);
+            border-radius: 45%;
+            animation: wave 3s infinite linear;
         }
 
-        @keyframes waveMotion {
+        @keyframes wave {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
 
-        .cylinder-controls {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .cylinder-percent-text {
-            font-size: 0.8rem;
-            font-weight: 800;
-            color: var(--turquoise-main);
-            text-align: center;
-        }
-
-        .range-mini {
-            width: 80px;
-            accent-color: var(--turquoise-main);
+        .range-slider {
+            width: 110px;
+            accent-color: var(--turquoise);
             cursor: pointer;
         }
 
-        /* زیرکارها (Sub-tasks) */
-        .subtasks-section {
-            margin-top: 10px;
-            padding-top: 10px;
-            border-top: 1px dashed #e2e8f0;
-            padding-right: 28px;
+        .delete-btn {
+            background: transparent;
+            border: none;
+            color: #ef4444;
+            cursor: pointer;
+            font-size: 1.1rem;
+            padding: 4px;
+            opacity: 0.6;
+            transition: var(--transition);
         }
 
-        .subtask-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            margin-bottom: 8px;
+        .delete-btn:hover {
+            opacity: 1;
+            transform: scale(1.15);
+        }
+
+        /* زیرکارها (Sub-tasks) */
+        .subtasks-box {
+            margin-top: 12px;
+            padding-top: 10px;
+            border-top: 1px dashed #e2e8f0;
+            padding-right: 18px;
         }
 
         .subtask-item {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            font-size: 0.85rem;
-        }
-
-        .subtask-item label {
-            display: flex;
-            align-items: center;
             gap: 8px;
-            cursor: pointer;
+            font-size: 0.88rem;
+            margin-bottom: 6px;
         }
 
-        .subtask-item.done span {
-            text-decoration: line-through;
-            color: #94a3b8;
-        }
-
-        .subtask-form {
+        .add-subtask-form {
             display: flex;
             gap: 6px;
+            margin-top: 8px;
         }
 
-        .subtask-form input {
+        .subtask-input {
             font-size: 0.82rem;
-            padding: 6px 10px;
-        }
-
-        .btn-subtask {
-            background: #f1f5f9;
-            color: #475569;
-            font-size: 0.8rem;
-            padding: 4px 10px;
-        }
-
-        /* دکمه انتقال کارها به فردا */
-        .btn-transfer {
-            background: var(--mustard-light);
-            color: var(--mustard-dark);
-            border: 1.5px solid rgba(217, 119, 6, 0.3);
-            width: 100%;
-            margin-top: 14px;
-            padding: 12px;
-            font-weight: 800;
-        }
-
-        .btn-transfer:hover {
-            background: #fde68a;
-        }
-
-        /* ۵. نمودار پیشرفت روز */
-        .progress-card {
-            background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(240,253,250,0.9));
-            border-right: 5px solid var(--turquoise-main);
-        }
-
-        .progress-gauge-wrapper {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-
-        .progress-details {
+            padding: 4px 8px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
             flex: 1;
         }
 
-        .progress-title-meta {
+        .btn-subtask {
+            font-size: 0.8rem;
+            background: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            padding: 4px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .btn-subtask:hover {
+            background: var(--turquoise);
+            color: white;
+            border-color: var(--turquoise);
+        }
+
+        /* ستون راست و چپ - ویجت‌های مختلف */
+        .grid-sub {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 24px;
+        }
+
+        /* ۷. عادت‌ها */
+        .habit-creator {
             display: flex;
-            justify-content: space-between;
-            font-size: 0.92rem;
-            font-weight: 800;
-            color: var(--azure-deep);
-            margin-bottom: 8px;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 14px;
         }
 
-        .progress-bar-container {
-            height: 14px;
-            background: #e2e8f0;
-            border-radius: 99px;
-            overflow: hidden;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
-        }
-
-        .progress-bar-glow {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, var(--turquoise-main), var(--mustard-main));
-            border-radius: 99px;
-            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* ۶. عادت‌سنج تیک‌زدنی */
-        .habit-palette {
+        .icon-palette {
             display: flex;
             flex-wrap: wrap;
             gap: 6px;
-            margin: 10px 0;
-            background: #f8fafc;
-            padding: 10px;
-            border-radius: var(--radius-md);
-            border: 1px solid #e2e8f0;
+            margin: 4px 0;
         }
 
-        .palette-icon {
-            font-size: 1.3rem;
-            padding: 6px;
+        .icon-choice {
+            font-size: 1.25rem;
+            width: 34px;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s;
-            line-height: 1;
-        }
-
-        .palette-icon:hover, .palette-icon.selected {
-            background: var(--mustard-light);
-            transform: scale(1.2);
-        }
-
-        .habit-items-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(135px, 1fr));
-            gap: 10px;
-            margin-top: 14px;
-        }
-
-        .habit-box {
+            border: 1px solid #e2e8f0;
             background: white;
-            border: 2px solid #e2e8f0;
-            border-radius: var(--radius-md);
-            padding: 12px 10px;
-            text-align: center;
             cursor: pointer;
-            transition: all 0.25s ease;
-            position: relative;
+            transition: var(--transition);
         }
 
-        .habit-box.checked {
-            border-color: var(--turquoise-main);
-            background: var(--turquoise-light);
-            box-shadow: 0 4px 12px rgba(13, 148, 136, 0.15);
+        .icon-choice.selected, .icon-choice:hover {
+            background: var(--turquoise-soft);
+            border-color: var(--turquoise);
+            transform: scale(1.1);
         }
 
-        .habit-box .h-icon { font-size: 1.7rem; margin-bottom: 4px; display: block; }
-        .habit-box .h-title { font-size: 0.88rem; font-weight: 700; color: #1e293b; }
-        .habit-delete-btn {
-            position: absolute;
-            top: 4px;
-            left: 4px;
-            background: none;
-            border: none;
-            color: #cbd5e1;
-            font-size: 0.8rem;
-            cursor: pointer;
+        .habits-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
-        .habit-delete-btn:hover { color: var(--danger); }
 
-        /* ۷. بودجه ماهانه و خرج‌وبرج */
-        .budget-header-box {
-            background: linear-gradient(135deg, var(--mustard-light), #fffbeb);
-            border: 1px solid rgba(217, 119, 6, 0.25);
+        .habit-item {
+            background: white;
+            padding: 10px 14px;
             border-radius: var(--radius-md);
-            padding: 14px;
-            margin-bottom: 16px;
-        }
-
-        .budget-inputs-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-bottom: 10px;
+            border: 1px solid #f1f5f9;
         }
 
-        .budget-metrics {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+        /* ۸. بخش خواب */
+        .sleep-tracker {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .sleep-input-row {
+            display: flex;
+            align-items: center;
             gap: 10px;
+        }
+
+        .moons-display {
+            font-size: 1.5rem;
+            letter-spacing: 4px;
+            min-height: 32px;
+            display: flex;
+            flex-wrap: wrap;
+            color: #fbbf24;
+            filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.4));
+        }
+
+        /* فیلدهای متنی انعکاسی */
+        .reflection-textarea {
+            width: 100%;
+            height: 90px;
+            border: 1px solid #cbd5e1;
+            border-radius: var(--radius-md);
+            padding: 12px;
+            outline: none;
+            resize: vertical;
+            font-size: 0.95rem;
+            background: white;
+            transition: var(--transition);
+        }
+
+        .reflection-textarea:focus {
+            border-color: var(--turquoise);
+            box-shadow: 0 0 0 3px var(--turquoise-soft);
+        }
+
+        /* ۱۳. بودجه و خرج‌وبرج */
+        .budget-summary {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 14px;
             text-align: center;
         }
 
-        .metric-pill {
+        .budget-badge {
             background: white;
-            padding: 8px;
-            border-radius: 10px;
+            padding: 10px 6px;
+            border-radius: var(--radius-md);
             border: 1px solid #e2e8f0;
         }
 
-        .metric-label { font-size: 0.75rem; color: #64748b; font-weight: 700; }
-        .metric-val { font-size: 1rem; font-weight: 800; color: var(--azure-deep); }
+        .budget-badge .title { font-size: 0.75rem; color: var(--text-muted); }
+        .budget-badge .val { font-size: 1rem; font-weight: 800; color: var(--lapis-lazuli); margin-top: 4px; }
+        .budget-badge.remain .val { color: var(--turquoise); }
+        .budget-badge.spent .val { color: var(--mustard); }
 
-        .expenses-table {
-            list-style: none;
+        .expense-form {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+
+        .expense-list {
+            max-height: 160px;
+            overflow-y: auto;
             display: flex;
             flex-direction: column;
             gap: 6px;
-            max-height: 180px;
-            overflow-y: auto;
-            margin-top: 12px;
         }
 
-        .expense-row {
+        .expense-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -668,895 +668,678 @@
             border: 1px solid #f1f5f9;
         }
 
-        /* ۸. تماس‌ها */
-        .call-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            max-height: 250px;
-            overflow-y: auto;
-            margin-top: 14px;
+        /* فوتر */
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
         }
-
-        .call-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: white;
-            padding: 10px 14px;
-            border-radius: var(--radius-md);
-            border: 1px solid #e2e8f0;
-        }
-
-        .call-item.done {
-            background: #f8fafc;
-            opacity: 0.65;
-        }
-
-        .call-item.done .call-name {
-            text-decoration: line-through;
-        }
-
-        .call-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .call-name { font-weight: 700; font-size: 0.92rem; }
-        .call-topic { font-size: 0.78rem; color: #64748b; margin-top: 2px; }
-
-        /* ناتیفیکیشن ذخیره */
-        .toast {
-            position: fixed;
-            bottom: 24px;
-            left: 24px;
-            background: var(--azure-deep);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-size: 0.88rem;
-            font-weight: 700;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.3s ease;
-            z-index: 9999;
-            pointer-events: none;
-        }
-        .toast.show { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        
-        <!-- ۱. سربرگ بسم الله الرحمن الرحیم -->
-        <header class="bismillah-header">
-            <h1 class="bismillah-text">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</h1>
-        </header>
+<div class="container">
+    <!-- ۱. سربرگ -->
+    <header class="bismillah-header">
+        <div class="bismillah-text">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</div>
+    </header>
 
-        <!-- ۲. تقویم و انتخاب روزهای هفته/ماه -->
-        <section class="calendar-card">
-            <div class="calendar-top">
-                <div>
-                    <h2 class="current-date-title" id="activeDateHeading">برنامه روز...</h2>
-                </div>
-                <div class="date-controllers">
-                    <button class="btn-date" onclick="navigateDay(-1)">◀ روز قبل</button>
-                    <button class="btn-date" onclick="goToToday()">امروز</button>
-                    <button class="btn-date" onclick="navigateDay(1)">روز بعد ▶</button>
-                </div>
+    <!-- ۲. تقویم تعاملی -->
+    <div class="glass-panel calendar-strip">
+        <button class="nav-btn" id="prevDay" title="روز قبل">❮</button>
+        <div class="days-container" id="daysList"></div>
+        <button class="nav-btn" id="nextDay" title="روز بعد">❯</button>
+    </div>
+
+    <div class="main-layout">
+        <!-- ستون راست: کارها و تمرکز اصلی -->
+        <div>
+            <!-- ۳. دویدن‌های امروزم -->
+            <div class="running-box">
+                <span class="icon">🏃‍♂️</span>
+                <input type="text" class="running-input" id="runningDedication" placeholder="دویدن‌های امروزم تقدیم به... (حس‌و‌حال یا تقدیم امروز)">
             </div>
-            <!-- نوار روزهای هفته -->
-            <div class="week-strip" id="weekStripContainer"></div>
-        </section>
 
-        <!-- چیدمان اصلی کارت‌ها -->
-        <div class="grid-layout">
-
-            <!-- ۳. بخش خواب: فیلد عددی + ماه ها -->
-            <div class="card col-12">
-                <div class="card-header">
-                    <div class="card-title-group">
-                        <div class="card-icon icon-azure">🌙</div>
-                        <h3 class="card-title">میزان خواب دیشب</h3>
-                    </div>
+            <!-- ۵. نمودار و نوار پیشرفت کل روز -->
+            <div class="progress-section">
+                <div class="progress-header">
+                    <span>پیشرفت کل فعالیت‌های امروز</span>
+                    <span id="progressPercent">0%</span>
                 </div>
-                <div class="sleep-row">
-                    <div class="sleep-input-wrapper">
-                        <input type="number" id="sleepHoursInput" min="0" max="24" step="1" placeholder="ساعت خواب">
-                    </div>
-                    <div class="sleep-moons-container" id="sleepMoonsDisplay">
-                        <!-- آیکون‌های ماه اینجا ظاهر می‌شوند -->
-                    </div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" id="progressBar"></div>
                 </div>
             </div>
 
-            <!-- ۴. بخش پیشرفته کارها (متواطی / مشکک / زیرکارها) -->
-            <div class="card col-7">
-                <div class="card-header">
-                    <div class="card-title-group">
-                        <div class="card-icon icon-turq">📋</div>
-                        <h3 class="card-title">فعالیت‌ها و برنامه‌های روز</h3>
-                    </div>
+            <!-- ۴. بخش پیشرفته کارها -->
+            <section class="glass-panel" style="margin-bottom: 24px;">
+                <div class="tasks-header">
+                    <h2 class="panel-title" style="margin-bottom: 0; border: none;">
+                        📌 لیست کارهای امروز
+                    </h2>
+                    <button class="btn-smart" id="migrateTasksBtn" title="کارهای انجام‌نشده به تاریخ فردا منتقل می‌شوند">
+                        🔄 انتقال کارهای انجام‌نشده به فردا
+                    </button>
                 </div>
 
-                <!-- فرم افزودن فعالیت جدید -->
-                <form id="taskCreateForm" class="task-creator">
-                    <input type="text" id="taskTitleInput" placeholder="عنوان فعالیت را وارد کنید..." required>
-                    <select id="taskTypeSelect">
-                        <option value="mutewati">متواطی (چک‌باکس ساده)</option>
-                        <option value="mushakkak">مشکک (آب سیال / درصدی)</option>
-                    </select>
-                    <button type="submit" class="btn btn-primary">افزودن</button>
-                </form>
+                <!-- فرم ایجاد کار -->
+                <div class="task-creator">
+                    <div class="task-creator-row">
+                        <input type="text" id="taskTitleInput" class="form-input" placeholder="عنوان فعالیت جدید...">
+                        <select id="taskTypeInput" class="form-select">
+                            <option value="simple">متواطی (تیک ساده)</option>
+                            <option value="fluid">مشکک (استوانه آب و درصد)</option>
+                        </select>
+                        <button class="btn-primary" id="addTaskBtn">افزودن</button>
+                    </div>
+                </div>
 
                 <!-- لیست کارها -->
-                <ul class="task-list" id="taskListContainer"></ul>
+                <div class="tasks-list" id="tasksContainer"></div>
+            </section>
 
-                <!-- دکمه انتقال کارهای انجام نشده به فردا -->
-                <button type="button" class="btn btn-transfer" onclick="transferIncompleteTasksToTomorrow()">
-                    ⏩ انتقال کارهای انجام‌نشده به تاریخِ فردا در تقویم
-                </button>
+            <!-- ۱۲. دغدغه‌ها و تخلیه ذهنی -->
+            <div class="glass-panel" style="margin-bottom: 24px;">
+                <h3 class="panel-title">🧠 چه دغدغه‌هایی امروز بیشتر ذهنتو درگیر کرد؟ (Brain Dump)</h3>
+                <textarea id="brainDumpInput" class="reflection-textarea" placeholder="هر آنچه ذهنت را خسته یا مشغول کرده اینجا بنویس و رهایش کن..."></textarea>
             </div>
 
-            <!-- ۵. نمودار پیشرفت روز + تماس‌ها -->
-            <div class="col-5" style="display:flex; flex-direction:column; gap:22px;">
-                
-                <!-- نمودار پیشرفت -->
-                <div class="card progress-card">
-                    <div class="card-header" style="margin-bottom:12px;">
-                        <div class="card-title-group">
-                            <div class="card-icon icon-turq">📊</div>
-                            <h3 class="card-title">پیشرفت کل فعالیت‌های امروز</h3>
-                        </div>
-                    </div>
-                    <div class="progress-gauge-wrapper">
-                        <div class="progress-details">
-                            <div class="progress-title-meta">
-                                <span>درصد تحقق برنامه‌ها</span>
-                                <span id="progressPercentageLabel">۰٪</span>
-                            </div>
-                            <div class="progress-bar-container">
-                                <div class="progress-bar-glow" id="dailyProgressBar"></div>
-                            </div>
-                        </div>
-                    </div>
+            <!-- ۱۰ و ۱۱. اشتباهات و موفقیت‌ها -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                <div class="glass-panel">
+                    <h3 class="panel-title">🔍 اشتباهات امروز من کجا بود؟</h3>
+                    <textarea id="mistakesInput" class="reflection-textarea" placeholder="بازتاب، درس‌ها و تجربه‌های امروز..."></textarea>
                 </div>
-
-                <!-- ۸. بخش تماس‌ها و پیگیری‌ها -->
-                <div class="card" style="flex:1;">
-                    <div class="card-header">
-                        <div class="card-title-group">
-                            <div class="card-icon icon-azure">📞</div>
-                            <h3 class="card-title">تماس‌ها و پیگیری‌ها</h3>
-                        </div>
-                    </div>
-
-                    <form id="callCreateForm" style="display:flex; gap:8px; margin-bottom:10px;">
-                        <input type="text" id="callNameInput" placeholder="نام مخاطب" required style="flex:1;">
-                        <input type="text" id="callTopicInput" placeholder="موضوع تماس" style="flex:1;">
-                        <button type="submit" class="btn btn-primary">ثبت</button>
-                    </form>
-
-                    <ul class="call-list" id="callListContainer"></ul>
+                <div class="glass-panel">
+                    <h3 class="panel-title">🌟 کجاها موفقیت کسب کردم؟</h3>
+                    <textarea id="winsInput" class="reflection-textarea" placeholder="پیروزی‌ها و دستاوردهای کوچک و بزرگ امروز..."></textarea>
                 </div>
             </div>
+        </div>
 
-            <!-- ۶. عادت‌سنج تیک‌زدنی (Habit Tracker) با پالت آیکون -->
-            <div class="card col-6">
-                <div class="card-header">
-                    <div class="card-title-group">
-                        <div class="card-icon icon-turq">🌱</div>
-                        <h3 class="card-title">عادت‌های تیک‌زدنی (Habit Tracker)</h3>
+        <!-- ستون چپ: عادت‌ها، خواب، تماس‌ها، تفریحات و بودجه -->
+        <div style="display: flex; flex-direction: column; gap: 24px;">
+            
+            <!-- ۷. عادت‌های تیک‌زدنی (Habit Tracker) -->
+            <div class="glass-panel">
+                <h3 class="panel-title">✨ پیگیری عادت‌ها <span class="badge">Habit Tracker</span></h3>
+                <div class="habit-creator">
+                    <div style="display: flex; gap: 8px;">
+                        <input type="text" id="habitTitleInput" class="form-input" placeholder="عنوان عادت جدید...">
+                        <button class="btn-primary" id="addHabitBtn">ثبت</button>
+                    </div>
+                    <div class="icon-palette" id="iconPalette">
+                        <!-- آیکون‌های جذاب انتخابی -->
+                        <div class="icon-choice selected" data-icon="💧">💧</div>
+                        <div class="icon-choice" data-icon="📖">📖</div>
+                        <div class="icon-choice" data-icon="🧘">🧘</div>
+                        <div class="icon-choice" data-icon="🏃">🏃</div>
+                        <div class="icon-choice" data-icon="🥗">🥗</div>
+                        <div class="icon-choice" data-icon="💊">💊</div>
+                        <div class="icon-choice" data-icon="💻">💻</div>
+                        <div class="icon-choice" data-icon="🪴">🪴</div>
+                        <div class="icon-choice" data-icon="✍️">✍️</div>
+                        <div class="icon-choice" data-icon="☀️">☀️</div>
+                        <div class="icon-choice" data-icon="🎯">🎯</div>
+                        <div class="icon-choice" data-icon="⚡">⚡</div>
                     </div>
                 </div>
+                <div class="habits-list" id="habitsContainer"></div>
+            </div>
 
-                <!-- فرم تعریف عادت جدید -->
-                <div>
-                    <div style="display:flex; gap:8px;">
-                        <input type="text" id="habitTitleInput" placeholder="نام عادت جدید (مثال: ۲۰ دقیقه مطالعه)">
-                        <button type="button" class="btn btn-primary" onclick="addNewHabit()">افزودن عادت</button>
+            <!-- ۸. بخش خواب -->
+            <div class="glass-panel">
+                <h3 class="panel-title">🌙 پایش ساعت خواب</h3>
+                <div class="sleep-tracker">
+                    <div class="sleep-input-row">
+                        <label style="font-size: 0.9rem; font-weight: 500;">میزان خواب دیشب:</label>
+                        <input type="number" id="sleepHoursInput" min="0" max="24" step="0.5" class="form-input" style="max-width: 90px;" placeholder="ساعت">
+                        <span style="font-size: 0.85rem; color: var(--text-muted);">ساعت</span>
                     </div>
-
-                    <!-- پالت ۱۶ آیکون انتخابی -->
-                    <div class="habit-palette" id="habitPalette"></div>
-                </div>
-
-                <div class="habit-items-grid" id="habitContainer">
-                    <!-- عادت‌ها در اینجا رسم می‌شوند -->
+                    <div class="moons-display" id="moonsDisplay"></div>
                 </div>
             </div>
 
-            <!-- ۷. بودجه ماهانه و خرج‌وبرج -->
-            <div class="card col-6">
-                <div class="card-header">
-                    <div class="card-title-group">
-                        <div class="card-icon icon-mustard">💰</div>
-                        <h3 class="card-title">بودجه ماهانه و خرج‌وبرج</h3>
+            <!-- ۶. تفریحات و ۹. تماس‌ها -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                <div class="glass-panel">
+                    <h3 class="panel-title">☕ تفریحات و استراحت</h3>
+                    <textarea id="leisureInput" class="reflection-textarea" style="height: 80px;" placeholder="کارهای لذت‌بخش امروز..."></textarea>
+                </div>
+                <div class="glass-panel">
+                    <h3 class="panel-title">📞 تماس و پیگیری</h3>
+                    <textarea id="callsInput" class="reflection-textarea" style="height: 80px;" placeholder="تماس‌های مهم کاری/دوستانه..."></textarea>
+                </div>
+            </div>
+
+            <!-- ۱۳. بودجه‌ی ماهانه و خرج‌وبرج -->
+            <div class="glass-panel">
+                <h3 class="panel-title">💳 بودجه و مخارج امروز</h3>
+                <div class="budget-summary">
+                    <div class="budget-badge">
+                        <div class="title">بودجه کل ماه</div>
+                        <div class="val" id="monthlyBudgetDisplay">0</div>
+                    </div>
+                    <div class="budget-badge spent">
+                        <div class="title">خرج‌شده امروز</div>
+                        <div class="val" id="todaySpentDisplay">0</div>
+                    </div>
+                    <div class="budget-badge remain">
+                        <div class="title">مانده بودجه</div>
+                        <div class="val" id="remainingBudgetDisplay">0</div>
                     </div>
                 </div>
 
-                <div class="budget-header-box">
-                    <div class="budget-inputs-row">
-                        <label style="font-size:0.85rem; font-weight:700;">بودجه کل این ماه (تومان):</label>
-                        <input type="number" id="monthlyBudgetInput" placeholder="مثال: ۱۰,۰۰۰,۰۰۰" style="max-width:180px;">
-                    </div>
-                    <div class="budget-metrics">
-                        <div class="metric-pill">
-                            <div class="metric-label">کل مخارج ثبت‌شده</div>
-                            <div class="metric-val" id="totalExpensesDisplay">۰</div>
-                        </div>
-                        <div class="metric-pill">
-                            <div class="metric-label">باقی‌مانده از بودجه</div>
-                            <div class="metric-val" id="remainingBudgetDisplay" style="color:var(--turquoise-main);">۰</div>
-                        </div>
-                    </div>
+                <div style="margin-bottom: 10px; display: flex; gap: 6px;">
+                    <input type="number" id="monthlyBudgetInput" class="form-input" placeholder="تنظیم بودجه ماهانه (تومان)...">
+                    <button class="btn-primary" id="saveBudgetBtn" style="font-size: 0.8rem;">ثبت بودجه</button>
                 </div>
 
-                <!-- فرم ثبت هزینه روز -->
-                <form id="expenseCreateForm" style="display:flex; gap:8px; margin-bottom:8px;">
-                    <input type="text" id="expenseTitleInput" placeholder="بابت چه چیزی؟" required style="flex:1.2;">
-                    <input type="number" id="expenseAmountInput" placeholder="مبلغ (تومان)" required style="flex:1;">
-                    <button type="submit" class="btn" style="background:var(--mustard-main); color:white;">ثبت</button>
-                </form>
+                <div class="expense-form">
+                    <input type="text" id="expenseTitleInput" class="form-input" placeholder="عنوان هزینه...">
+                    <input type="number" id="expenseAmountInput" class="form-input" style="max-width: 120px;" placeholder="مبلغ (تومان)">
+                    <button class="btn-primary" id="addExpenseBtn">+</button>
+                </div>
 
-                <ul class="expenses-table" id="expensesListContainer"></ul>
+                <div class="expense-list" id="expenseListContainer"></div>
             </div>
 
         </div>
     </div>
 
-    <!-- پیام ذخیره‌سازی -->
-    <div id="saveToast" class="toast">✓ اطلاعات ذخیره شد</div>
+    <footer>
+        <p>پلنر شخصی پیشرفته • طراحی شده با آرامش و دقت برای رشد فردی ✦</p>
+    </footer>
+</div>
 
-    <script>
-        /* ===================================================
-           مدیریت داده‌ها و ذخیره‌سازی در LocalStorage
-           =================================================== */
-        const STORAGE_PREFIX = 'planner_v2_';
-        const GLOBAL_KEY = 'planner_v2_global';
+<script>
+    /* ==========================================================
+       مدیریت وضعیت و داده‌های LocalStorage
+       ========================================================== */
+    const STORAGE_KEY_PREFIX = 'ADVANCED_PLANNER_';
+    const GLOBAL_BUDGET_KEY = 'ADVANCED_PLANNER_GLOBAL_BUDGET';
 
-        // تاریخ فعال جاری
-        let activeDate = new Date();
+    let currentDate = new Date();
+    let selectedDateStr = getFormattedDateKey(currentDate);
+    let selectedHabitIcon = '💧';
 
-        // عادت‌های از پیش تعیین‌شده در سیستم (پالت آیکون‌ها)
-        const AVAILABLE_ICONS = ['💧', '📖', '🏃‍♂️', '🧘‍♂️', '🥗', '💊', '📵', '🎯', '✍️', '🧹', '🚶‍♂️', '🌿', '💡', '🎨', '🎵', '💤'];
-        let selectedHabitIcon = AVAILABLE_ICONS[0];
+    // فرمت دهی استاندارد کلید تاریخ (YYYY-MM-DD)
+    function getFormattedDateKey(date) {
+        const y = date.getFullYear();
+        const m = String(date.getMonth() + 1).padStart(2, '0');
+        const d = String(date.getDate()).padStart(2, '0');
+        return `${y}-${m}-${d}`;
+    }
 
-        // داده‌های عمومی (بودجه ماهانه و ساختار کلی عادت‌ها)
-        let globalData = {
-            monthlyBudget: 0,
-            habitsCatalog: [] // لیستی از { id, title, icon }
-        };
-
-        // داده‌های اختصاصی هر روز
-        let currentDayData = {
-            sleepHours: 0,
+    // ساختار پیش‌فرض برای هر روز
+    function getDefaultDayData() {
+        return {
+            running: '',
             tasks: [],
-            calls: [],
-            expenses: [],
-            checkedHabits: [] // آی‌دی عادت‌هایی که امروز تیک خوردند
+            habits: [],
+            sleep: 0,
+            leisure: '',
+            calls: '',
+            mistakes: '',
+            wins: '',
+            brainDump: '',
+            expenses: []
         };
+    }
 
-        function getActiveDateKey(date = activeDate) {
-            const y = date.getFullYear();
-            const m = String(date.getMonth() + 1).padStart(2, '0');
-            const d = String(date.getDate()).padStart(2, '0');
-            return `${y}-${m}-${d}`;
+    function loadDayData(dateStr) {
+        const raw = localStorage.getItem(STORAGE_KEY_PREFIX + dateStr);
+        if (!raw) return getDefaultDayData();
+        try {
+            return { ...getDefaultDayData(), ...JSON.parse(raw) };
+        } catch (e) {
+            return getDefaultDayData();
         }
+    }
 
-        function loadGlobalData() {
-            const raw = localStorage.getItem(GLOBAL_KEY);
-            if (raw) {
-                try { globalData = { ...globalData, ...JSON.parse(raw) }; } catch(e){}
-            }
-        }
+    function saveDayData(dateStr, data) {
+        localStorage.setItem(STORAGE_KEY_PREFIX + dateStr, JSON.stringify(data));
+        updateProgress();
+    }
 
-        function saveGlobalData() {
-            localStorage.setItem(GLOBAL_KEY, JSON.stringify(globalData));
-            showToast();
-        }
+    function getMonthlyBudget() {
+        return parseFloat(localStorage.getItem(GLOBAL_BUDGET_KEY)) || 0;
+    }
 
-        function loadDayData(date = activeDate) {
-            const key = STORAGE_PREFIX + getActiveDateKey(date);
-            const raw = localStorage.getItem(key);
-            if (raw) {
-                try {
-                    currentDayData = JSON.parse(raw);
-                } catch(e) {
-                    currentDayData = defaultDayData();
-                }
-            } else {
-                currentDayData = defaultDayData();
-            }
-        }
+    function setMonthlyBudget(val) {
+        localStorage.setItem(GLOBAL_BUDGET_KEY, val);
+    }
 
-        function saveDayData(date = activeDate) {
-            const key = STORAGE_PREFIX + getActiveDateKey(date);
-            localStorage.setItem(key, JSON.stringify(currentDayData));
-            showToast();
-            updateProgressGauge();
-        }
+    /* ==========================================================
+       رندر کردن تقویم نواری
+       ========================================================== */
+    function renderCalendar() {
+        const daysList = document.getElementById('daysList');
+        daysList.innerHTML = '';
+        
+        // نمایش ۷ روز (۳ روز قبل تا ۳ روز بعد)
+        for (let i = -3; i <= 3; i++) {
+            const d = new Date(currentDate);
+            d.setDate(currentDate.getDate() + i);
+            const dateStr = getFormattedDateKey(d);
+            
+            // تبدیل به تاریخ شمسی برای نمایش
+            const faDayName = new Intl.DateTimeFormat('fa-IR', { weekday: 'short' }).format(d);
+            const faDayNum = new Intl.DateTimeFormat('fa-IR', { day: 'numeric', month: 'short' }).format(d);
 
-        function defaultDayData() {
-            return {
-                sleepHours: 0,
-                tasks: [],
-                calls: [],
-                expenses: [],
-                checkedHabits: []
+            const card = document.createElement('div');
+            card.className = `day-card ${dateStr === selectedDateStr ? 'active' : ''}`;
+            card.innerHTML = `
+                <div class="day-name">${faDayName}</div>
+                <div class="day-num">${faDayNum}</div>
+            `;
+            card.onclick = () => {
+                selectedDateStr = dateStr;
+                renderCalendar();
+                renderAll();
             };
+            daysList.appendChild(card);
+        }
+    }
+
+    document.getElementById('prevDay').onclick = () => {
+        currentDate.setDate(currentDate.getDate() - 1);
+        selectedDateStr = getFormattedDateKey(currentDate);
+        renderCalendar();
+        renderAll();
+    };
+
+    document.getElementById('nextDay').onclick = () => {
+        currentDate.setDate(currentDate.getDate() + 1);
+        selectedDateStr = getFormattedDateKey(currentDate);
+        renderCalendar();
+        renderAll();
+    };
+
+    /* ==========================================================
+       رندر کردن کارها (فعالیت‌ها)
+       ========================================================== */
+    function renderTasks() {
+        const container = document.getElementById('tasksContainer');
+        const data = loadDayData(selectedDateStr);
+        container.innerHTML = '';
+
+        if (data.tasks.length === 0) {
+            container.innerHTML = `<div style="text-align:center; color:var(--text-muted); padding:16px; font-size:0.9rem;">هنوز کاری برای امروز ثبت نشده است.</div>`;
+            return;
         }
 
-        function showToast(text = '✓ اطلاعات ذخیره شد') {
-            const t = document.getElementById('saveToast');
-            t.textContent = text;
-            t.classList.add('show');
-            setTimeout(() => t.classList.remove('show'), 1500);
-        }
+        data.tasks.forEach((task, index) => {
+            const card = document.createElement('div');
+            card.className = 'task-card';
 
-        /* ===================================================
-           ۲. مدیریت تقویم و نوار روزها
-           =================================================== */
-        function formatPersianDate(date) {
-            return new Intl.DateTimeFormat('fa-IR', {
-                weekday: 'long',
-                day: 'numeric',
-                month: 'long',
-                year: 'numeric'
-            }).format(date);
-        }
-
-        function renderCalendarStrip() {
-            document.getElementById('activeDateHeading').textContent = `برنامه ${formatPersianDate(activeDate)}`;
-            const container = document.getElementById('weekStripContainer');
-            container.innerHTML = '';
-
-            // نمایش بازه ۳ روز قبل تا ۳ روز بعد
-            for (let i = -3; i <= 3; i++) {
-                const d = new Date(activeDate);
-                d.setDate(d.getDate() + i);
-
-                const pill = document.createElement('div');
-                pill.className = `day-pill ${i === 0 ? 'active' : ''}`;
-                
-                const dayName = new Intl.DateTimeFormat('fa-IR', { weekday: 'short' }).format(d);
-                const dayNum = new Intl.DateTimeFormat('fa-IR', { day: 'numeric', month: 'numeric' }).format(d);
-
-                pill.innerHTML = `
-                    <span class="day-name">${dayName}</span>
-                    <span class="day-number">${dayNum}</span>
+            let fluidOrCheckHtml = '';
+            if (task.type === 'simple') {
+                fluidOrCheckHtml = `
+                    <input type="checkbox" class="checkbox-custom" ${task.completed ? 'checked' : ''} onchange="toggleTaskSimple(${index})">
                 `;
-
-                pill.onclick = () => {
-                    activeDate = d;
-                    switchDate();
-                };
-
-                container.appendChild(pill);
-            }
-        }
-
-        function navigateDay(offset) {
-            activeDate.setDate(activeDate.getDate() + offset);
-            switchDate();
-        }
-
-        function goToToday() {
-            activeDate = new Date();
-            switchDate();
-        }
-
-        function switchDate() {
-            loadDayData();
-            renderCalendarStrip();
-            renderSleep();
-            renderTasks();
-            renderHabits();
-            renderExpenses();
-            renderCalls();
-            updateProgressGauge();
-        }
-
-        /* ===================================================
-           ۳. بخش خواب (ساعت عددی + آیکون ماه)
-           =================================================== */
-        const sleepInput = document.getElementById('sleepHoursInput');
-        const sleepMoonsDisplay = document.getElementById('sleepMoonsDisplay');
-
-        function renderSleep() {
-            sleepInput.value = currentDayData.sleepHours || '';
-            updateMoons(currentDayData.sleepHours);
-        }
-
-        function updateMoons(count) {
-            sleepMoonsDisplay.innerHTML = '';
-            const hours = parseInt(count) || 0;
-            for (let i = 0; i < Math.min(hours, 24); i++) {
-                const moon = document.createElement('span');
-                moon.className = 'moon-icon';
-                moon.textContent = '🌙';
-                sleepMoonsDisplay.appendChild(moon);
-            }
-        }
-
-        sleepInput.addEventListener('input', (e) => {
-            const val = parseInt(e.target.value) || 0;
-            currentDayData.sleepHours = val;
-            updateMoons(val);
-            saveDayData();
-        });
-
-        /* ===================================================
-           ۴. کارهای پیشرفته (متواطی / مشکک / زیرکارها)
-           =================================================== */
-        const taskCreateForm = document.getElementById('taskCreateForm');
-        const taskTitleInput = document.getElementById('taskTitleInput');
-        const taskTypeSelect = document.getElementById('taskTypeSelect');
-        const taskListContainer = document.getElementById('taskListContainer');
-
-        taskCreateForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const title = taskTitleInput.value.trim();
-            if (!title) return;
-
-            const newTask = {
-                id: Date.now(),
-                title: title,
-                type: taskTypeSelect.value, // 'mutewati' یا 'mushakkak'
-                done: false,                // برای متواطی
-                percent: 0,                 // برای مشکک
-                subtasks: []
-            };
-
-            currentDayData.tasks.push(newTask);
-            taskTitleInput.value = '';
-            saveDayData();
-            renderTasks();
-        });
-
-        function renderTasks() {
-            taskListContainer.innerHTML = '';
-
-            if (currentDayData.tasks.length === 0) {
-                taskListContainer.innerHTML = '<li style="text-align:center; color:#94a3b8; padding:20px; font-size:0.9rem;">هنوز کاری برای این روز تعریف نشده است.</li>';
-                return;
-            }
-
-            currentDayData.tasks.forEach(task => {
-                const li = document.createElement('li');
-                const isCompleted = task.type === 'mutewati' ? task.done : (task.percent === 100);
-                li.className = `task-card ${isCompleted ? 'completed' : ''}`;
-
-                let taskActionHtml = '';
-
-                if (task.type === 'mutewati') {
-                    taskActionHtml = `
-                        <input type="checkbox" style="width:20px; height:20px; accent-color:var(--azure-primary); cursor:pointer;" 
-                               ${task.done ? 'checked' : ''} onchange="toggleMutewatiTask(${task.id})">
-                    `;
-                } else {
-                    // استوانه آب سیال
-                    taskActionHtml = `
-                        <div class="cylinder-wrapper">
-                            <div class="cylinder-controls">
-                                <span class="cylinder-percent-text">${task.percent}٪</span>
-                                <input type="range" min="0" max="100" value="${task.percent}" class="range-mini" 
-                                       oninput="updateMushakkakPercent(${task.id}, this.value)">
-                            </div>
-                            <div class="liquid-cylinder" title="${task.percent}٪ انجام شده">
-                                <div class="liquid-fill" style="height: ${task.percent}%;">
-                                    <div class="liquid-wave"></div>
-                                </div>
-                            </div>
+            } else {
+                // مشکک (استوانه آب)
+                fluidOrCheckHtml = `
+                    <div class="cylinder-container">
+                        <div class="fluid-cylinder" title="${task.percent || 0}%">
+                            <div class="fluid-water" style="height: ${task.percent || 0}%;"></div>
                         </div>
-                    `;
-                }
+                        <input type="range" class="range-slider" min="0" max="100" value="${task.percent || 0}" oninput="updateTaskPercent(${index}, this.value)">
+                        <span style="font-size:0.8rem; font-weight:700; width:34px; color:var(--lapis-lazuli);">${task.percent || 0}%</span>
+                    </div>
+                `;
+            }
 
-                // رندر زیرکارها
-                let subtasksHtml = task.subtasks.map(st => `
-                    <li class="subtask-item ${st.done ? 'done' : ''}">
-                        <label>
-                            <input type="checkbox" ${st.done ? 'checked' : ''} onchange="toggleSubtask(${task.id}, ${st.id})">
-                            <span>${escapeHtml(st.title)}</span>
-                        </label>
-                        <button onclick="deleteSubtask(${task.id}, ${st.id})" style="border:none; background:none; color:#cbd5e1; cursor:pointer;">✕</button>
-                    </li>
+            // زیرکارها
+            let subtasksHtml = '';
+            if (task.subtasks && task.subtasks.length > 0) {
+                subtasksHtml = task.subtasks.map((sub, sIdx) => `
+                    <div class="subtask-item">
+                        <input type="checkbox" ${sub.completed ? 'checked' : ''} onchange="toggleSubtask(${index}, ${sIdx})">
+                        <span style="${sub.completed ? 'text-decoration:line-through; color:var(--text-muted);' : ''}">${sub.title}</span>
+                    </div>
                 `).join('');
+            }
 
-                li.innerHTML = `
-                    <div class="task-main-row">
-                        <div class="task-label-group">
-                            <span class="task-type-badge ${task.type === 'mutewati' ? 'badge-mutewati' : 'badge-mushakkak'}">
-                                ${task.type === 'mutewati' ? 'متواطی' : 'مشکک'}
-                            </span>
-                            <span class="task-text">${escapeHtml(task.title)}</span>
-                        </div>
-                        <div style="display:flex; align-items:center; gap:10px;">
-                            ${taskActionHtml}
-                            <button class="btn btn-danger-soft" onclick="deleteTask(${task.id})" style="padding:4px 8px; font-size:0.8rem;">حذف</button>
-                        </div>
+            card.innerHTML = `
+                <div class="task-main">
+                    <div class="task-left">
+                        ${task.type === 'simple' ? fluidOrCheckHtml : ''}
+                        <span class="task-title ${task.completed ? 'completed' : ''}">${task.title}</span>
                     </div>
-
-                    <!-- بخش زیرکارها -->
-                    <div class="subtasks-section">
-                        <ul class="subtask-list" id="subList_${task.id}">
-                            ${subtasksHtml}
-                        </ul>
-                        <form class="subtask-form" onsubmit="addSubtask(event, ${task.id})">
-                            <input type="text" placeholder="+ افزودن زیرکار جدید..." id="subInput_${task.id}" required>
-                            <button type="submit" class="btn btn-subtask">افزودن</button>
-                        </form>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        ${task.type === 'fluid' ? fluidOrCheckHtml : ''}
+                        <button class="delete-btn" onclick="deleteTask(${index})" title="حذف فعالیت">✕</button>
                     </div>
-                `;
-
-                taskListContainer.appendChild(li);
-            });
-        }
-
-        window.toggleMutewatiTask = function(taskId) {
-            currentDayData.tasks = currentDayData.tasks.map(t => {
-                if (t.id === taskId) t.done = !t.done;
-                return t;
-            });
-            saveDayData();
-            renderTasks();
-        };
-
-        window.updateMushakkakPercent = function(taskId, value) {
-            currentDayData.tasks = currentDayData.tasks.map(t => {
-                if (t.id === taskId) t.percent = parseInt(value);
-                return t;
-            });
-            saveDayData();
-            renderTasks();
-        };
-
-        window.deleteTask = function(taskId) {
-            currentDayData.tasks = currentDayData.tasks.filter(t => t.id !== taskId);
-            saveDayData();
-            renderTasks();
-        };
-
-        window.addSubtask = function(e, taskId) {
-            e.preventDefault();
-            const input = document.getElementById(`subInput_${taskId}`);
-            const title = input.value.trim();
-            if (!title) return;
-
-            currentDayData.tasks = currentDayData.tasks.map(t => {
-                if (t.id === taskId) {
-                    t.subtasks.push({ id: Date.now(), title: title, done: false });
-                }
-                return t;
-            });
-
-            input.value = '';
-            saveDayData();
-            renderTasks();
-        };
-
-        window.toggleSubtask = function(taskId, subId) {
-            currentDayData.tasks = currentDayData.tasks.map(t => {
-                if (t.id === taskId) {
-                    t.subtasks = t.subtasks.map(st => st.id === subId ? { ...st, done: !st.done } : st);
-                }
-                return t;
-            });
-            saveDayData();
-            renderTasks();
-        };
-
-        window.deleteSubtask = function(taskId, subId) {
-            currentDayData.tasks = currentDayData.tasks.map(t => {
-                if (t.id === taskId) {
-                    t.subtasks = t.subtasks.filter(st => st.id !== subId);
-                }
-                return t;
-            });
-            saveDayData();
-            renderTasks();
-        };
-
-        // انتقال هوشمند کارهای انجام نشده به فردا در تقویم
-        window.transferIncompleteTasksToTomorrow = function() {
-            const incompleteTasks = currentDayData.tasks.filter(t => {
-                return (t.type === 'mutewati' && !t.done) || (t.type === 'mushakkak' && t.percent < 100);
-            });
-
-            if (incompleteTasks.length === 0) {
-                alert('هیچ کار انجام‌نشده‌ای برای انتقال وجود ندارد! همگی کامل شده‌اند 🎉');
-                return;
-            }
-
-            // تاریخ روز بعد
-            const tomorrow = new Date(activeDate);
-            tomorrow.setDate(tomorrow.getDate() + 1);
-            const tomorrowKey = STORAGE_PREFIX + getActiveDateKey(tomorrow);
-
-            // بارگذاری یا ساخت روز بعد
-            let tomorrowData = defaultDayData();
-            const rawTomorrow = localStorage.getItem(tomorrowKey);
-            if (rawTomorrow) {
-                try { tomorrowData = JSON.parse(rawTomorrow); } catch(e){}
-            }
-
-            // انتقال کارها
-            tomorrowData.tasks.push(...incompleteTasks);
-            localStorage.setItem(tomorrowKey, JSON.stringify(tomorrowData));
-
-            // حذف کارهای انجام نشده از روز جاری
-            currentDayData.tasks = currentDayData.tasks.filter(t => {
-                return (t.type === 'mutewati' && t.done) || (t.type === 'mushakkak' && t.percent === 100);
-            });
-
-            saveDayData();
-            renderTasks();
-            showToast('کارهای انجام نشده به روز فردا در تقویم منتقل شدند ⏩');
-        };
-
-        /* ===================================================
-           ۵. محاسبه و نمایش نمودار درصد کل پیشرفت روز
-           =================================================== */
-        function updateProgressGauge() {
-            const tasks = currentDayData.tasks;
-            const label = document.getElementById('progressPercentageLabel');
-            const bar = document.getElementById('dailyProgressBar');
-
-            if (!tasks || tasks.length === 0) {
-                label.textContent = '۰٪';
-                bar.style.width = '0%';
-                return;
-            }
-
-            let totalPercent = 0;
-            tasks.forEach(t => {
-                if (t.type === 'mutewati') {
-                    totalPercent += t.done ? 100 : 0;
-                } else {
-                    totalPercent += t.percent;
-                }
-            });
-
-            const avg = Math.round(totalPercent / tasks.length);
-            label.textContent = `${avg}٪`;
-            bar.style.width = `${avg}%`;
-        }
-
-        /* ===================================================
-           ۶. بخش عادت‌سنج تیک‌زدنی (Habit Tracker)
-           =================================================== */
-        const habitPalette = document.getElementById('habitPalette');
-        const habitContainer = document.getElementById('habitContainer');
-        const habitTitleInput = document.getElementById('habitTitleInput');
-
-        function initHabitPalette() {
-            habitPalette.innerHTML = '';
-            AVAILABLE_ICONS.forEach(icon => {
-                const span = document.createElement('span');
-                span.className = `palette-icon ${icon === selectedHabitIcon ? 'selected' : ''}`;
-                span.textContent = icon;
-                span.onclick = () => {
-                    selectedHabitIcon = icon;
-                    document.querySelectorAll('.palette-icon').forEach(el => el.classList.remove('selected'));
-                    span.classList.add('selected');
-                };
-                habitPalette.appendChild(span);
-            });
-        }
-
-        function addNewHabit() {
-            const title = habitTitleInput.value.trim();
-            if (!title) return;
-
-            const newHabit = {
-                id: Date.now(),
-                title: title,
-                icon: selectedHabitIcon
-            };
-
-            globalData.habitsCatalog.push(newHabit);
-            habitTitleInput.value = '';
-            saveGlobalData();
-            renderHabits();
-        }
-
-        function renderHabits() {
-            habitContainer.innerHTML = '';
-
-            if (globalData.habitsCatalog.length === 0) {
-                habitContainer.innerHTML = '<div style="grid-column:1/-1; text-align:center; color:#94a3b8; padding:20px; font-size:0.88rem;">هیچ عادتی اضافه نشده است. عنوان عادت را بنویسید، آیکون دلخواه را انتخاب کنید و روی دکمه کلیک کنید.</div>';
-                return;
-            }
-
-            globalData.habitsCatalog.forEach(habit => {
-                const isChecked = currentDayData.checkedHabits.includes(habit.id);
-                const box = document.createElement('div');
-                box.className = `habit-box ${isChecked ? 'checked' : ''}`;
-
-                box.innerHTML = `
-                    <button class="habit-delete-btn" onclick="event.stopPropagation(); deleteHabit(${habit.id})">✕</button>
-                    <span class="h-icon">${habit.icon}</span>
-                    <span class="h-title">${escapeHtml(habit.title)}</span>
-                `;
-
-                box.onclick = () => {
-                    if (currentDayData.checkedHabits.includes(habit.id)) {
-                        currentDayData.checkedHabits = currentDayData.checkedHabits.filter(id => id !== habit.id);
-                    } else {
-                        currentDayData.checkedHabits.push(habit.id);
-                    }
-                    saveDayData();
-                    renderHabits();
-                };
-
-                habitContainer.appendChild(box);
-            });
-        }
-
-        window.deleteHabit = function(habitId) {
-            if (confirm('این عادت حذف شود؟')) {
-                globalData.habitsCatalog = globalData.habitsCatalog.filter(h => h.id !== habitId);
-                saveGlobalData();
-                renderHabits();
-            }
-        };
-
-        /* ===================================================
-           ۷. بودجه ماهانه و هزینه‌ها
-           =================================================== */
-        const monthlyBudgetInput = document.getElementById('monthlyBudgetInput');
-        const expenseCreateForm = document.getElementById('expenseCreateForm');
-        const expenseTitleInput = document.getElementById('expenseTitleInput');
-        const expenseAmountInput = document.getElementById('expenseAmountInput');
-        const expensesListContainer = document.getElementById('expensesListContainer');
-        const totalExpensesDisplay = document.getElementById('totalExpensesDisplay');
-        const remainingBudgetDisplay = document.getElementById('remainingBudgetDisplay');
-
-        monthlyBudgetInput.addEventListener('input', (e) => {
-            globalData.monthlyBudget = parseFloat(e.target.value) || 0;
-            saveGlobalData();
-            calculateBudgetOverview();
+                </div>
+                <div class="subtasks-box">
+                    ${subtasksHtml}
+                    <div class="add-subtask-form">
+                        <input type="text" id="subtask-input-${index}" class="subtask-input" placeholder="افزودن زیرکار...">
+                        <button class="btn-subtask" onclick="addSubtask(${index})">+ زیرکار</button>
+                    </div>
+                </div>
+            `;
+            container.appendChild(card);
         });
+    }
 
-        expenseCreateForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const title = expenseTitleInput.value.trim();
-            const amount = parseFloat(expenseAmountInput.value) || 0;
-            if (!title || amount <= 0) return;
+    window.toggleTaskSimple = function(index) {
+        const data = loadDayData(selectedDateStr);
+        data.tasks[index].completed = !data.tasks[index].completed;
+        saveDayData(selectedDateStr, data);
+        renderTasks();
+    };
 
-            currentDayData.expenses.push({ id: Date.now(), title, amount });
-            expenseTitleInput.value = '';
-            expenseAmountInput.value = '';
-            saveDayData();
-            renderExpenses();
+    window.updateTaskPercent = function(index, value) {
+        const data = loadDayData(selectedDateStr);
+        data.tasks[index].percent = parseInt(value, 10);
+        data.tasks[index].completed = (data.tasks[index].percent === 100);
+        saveDayData(selectedDateStr, data);
+        renderTasks();
+    };
+
+    window.deleteTask = function(index) {
+        const data = loadDayData(selectedDateStr);
+        data.tasks.splice(index, 1);
+        saveDayData(selectedDateStr, data);
+        renderTasks();
+    };
+
+    window.addSubtask = function(taskIndex) {
+        const input = document.getElementById(`subtask-input-${taskIndex}`);
+        const title = input.value.trim();
+        if (!title) return;
+        const data = loadDayData(selectedDateStr);
+        if (!data.tasks[taskIndex].subtasks) data.tasks[taskIndex].subtasks = [];
+        data.tasks[taskIndex].subtasks.push({ title, completed: false });
+        saveDayData(selectedDateStr, data);
+        renderTasks();
+    };
+
+    window.toggleSubtask = function(taskIndex, subIndex) {
+        const data = loadDayData(selectedDateStr);
+        data.tasks[taskIndex].subtasks[subIndex].completed = !data.tasks[taskIndex].subtasks[subIndex].completed;
+        saveDayData(selectedDateStr, data);
+        renderTasks();
+    };
+
+    document.getElementById('addTaskBtn').onclick = () => {
+        const titleInput = document.getElementById('taskTitleInput');
+        const typeInput = document.getElementById('taskTypeInput');
+        const title = titleInput.value.trim();
+        if (!title) return;
+
+        const data = loadDayData(selectedDateStr);
+        data.tasks.push({
+            title,
+            type: typeInput.value,
+            completed: false,
+            percent: 0,
+            subtasks: []
         });
+        saveDayData(selectedDateStr, data);
+        titleInput.value = '';
+        renderTasks();
+    };
 
-        function renderExpenses() {
-            monthlyBudgetInput.value = globalData.monthlyBudget || '';
-            expensesListContainer.innerHTML = '';
+    /* دکمه هوشمند: انتقال کارهای انجام‌نشده به فردا */
+    document.getElementById('migrateTasksBtn').onclick = () => {
+        const currentData = loadDayData(selectedDateStr);
+        const uncompletedTasks = currentData.tasks.filter(t => !t.completed);
 
-            currentDayData.expenses.forEach(item => {
-                const li = document.createElement('li');
-                li.className = 'expense-row';
-                li.innerHTML = `
-                    <span>${escapeHtml(item.title)}</span>
-                    <div>
-                        <strong style="color:var(--mustard-dark);">${item.amount.toLocaleString('fa-IR')} تومان</strong>
-                        <button onclick="deleteExpense(${item.id})" style="border:none; background:none; color:#cbd5e1; cursor:pointer; margin-right:8px;">✕</button>
-                    </div>
-                `;
-                expensesListContainer.appendChild(li);
-            });
-
-            calculateBudgetOverview();
+        if (uncompletedTasks.length === 0) {
+            alert('هیچ کار انجام‌نشده‌ای برای انتقال وجود ندارد! عالی بودی!');
+            return;
         }
 
-        function calculateBudgetOverview() {
-            // محاسبه کل هزینه‌های ثبت‌شده در این روز
-            let dailyTotal = currentDayData.expenses.reduce((sum, item) => sum + item.amount, 0);
-            totalExpensesDisplay.textContent = `${dailyTotal.toLocaleString('fa-IR')} تومان`;
+        // محاسبه تاریخ فردا
+        const parts = selectedDateStr.split('-');
+        const dateObj = new Date(parts[0], parts[1] - 1, parts[2]);
+        dateObj.setDate(dateObj.getDate() + 1);
+        const nextDateStr = getFormattedDateKey(dateObj);
 
-            const remaining = (globalData.monthlyBudget || 0) - dailyTotal;
-            remainingBudgetDisplay.textContent = `${remaining.toLocaleString('fa-IR')} تومان`;
+        // افزودن به فردا
+        const nextData = loadDayData(nextDateStr);
+        nextData.tasks = [...nextData.tasks, ...JSON.parse(JSON.stringify(uncompletedTasks))];
+        saveDayData(nextDateStr, nextData);
 
-            if (remaining < 0) {
-                remainingBudgetDisplay.style.color = 'var(--danger)';
+        // حذف از امروز
+        currentData.tasks = currentData.tasks.filter(t => t.completed);
+        saveDayData(selectedDateStr, currentData);
+
+        renderTasks();
+        alert(`تعداد ${uncompletedTasks.length} کار انجام‌نشده با موفقیت به تاریخ روز بعد منتقل شد.`);
+    };
+
+    /* ==========================================================
+       محاسبه پیشرفت کل روز
+       ========================================================== */
+    function updateProgress() {
+        const data = loadDayData(selectedDateStr);
+        const progressBar = document.getElementById('progressBar');
+        const progressPercent = document.getElementById('progressPercent');
+
+        if (data.tasks.length === 0) {
+            progressBar.style.width = '0%';
+            progressPercent.innerText = '0%';
+            return;
+        }
+
+        let totalPoints = 0;
+        data.tasks.forEach(t => {
+            if (t.type === 'simple') {
+                totalPoints += t.completed ? 100 : 0;
             } else {
-                remainingBudgetDisplay.style.color = 'var(--turquoise-main)';
+                totalPoints += (t.percent || 0);
             }
-        }
-
-        window.deleteExpense = function(id) {
-            currentDayData.expenses = currentDayData.expenses.filter(i => i.id !== id);
-            saveDayData();
-            renderExpenses();
-        };
-
-        /* ===================================================
-           ۸. بخش تماس‌ها و پیگیری‌ها
-           =================================================== */
-        const callCreateForm = document.getElementById('callCreateForm');
-        const callNameInput = document.getElementById('callNameInput');
-        const callTopicInput = document.getElementById('callTopicInput');
-        const callListContainer = document.getElementById('callListContainer');
-
-        callCreateForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const name = callNameInput.value.trim();
-            const topic = callTopicInput.value.trim();
-            if (!name) return;
-
-            currentDayData.calls.push({
-                id: Date.now(),
-                name,
-                topic,
-                done: false
-            });
-
-            callNameInput.value = '';
-            callTopicInput.value = '';
-            saveDayData();
-            renderCalls();
         });
 
-        function renderCalls() {
-            callListContainer.innerHTML = '';
+        const avg = Math.round(totalPoints / data.tasks.length);
+        progressBar.style.width = `${avg}%`;
+        progressPercent.innerText = `${avg}%`;
+    }
 
-            if (currentDayData.calls.length === 0) {
-                callListContainer.innerHTML = '<li style="text-align:center; color:#94a3b8; font-size:0.85rem; padding:15px;">هیچ تماسی برای پیگیری ثبت نشده است.</li>';
-                return;
-            }
-
-            currentDayData.calls.forEach(call => {
-                const li = document.createElement('li');
-                li.className = `call-item ${call.done ? 'done' : ''}`;
-                li.innerHTML = `
-                    <div class="call-info">
-                        <input type="checkbox" ${call.done ? 'checked' : ''} onchange="toggleCall(${call.id})">
-                        <div>
-                            <div class="call-name">${escapeHtml(call.name)}</div>
-                            ${call.topic ? `<div class="call-topic">${escapeHtml(call.topic)}</div>` : ''}
-                        </div>
-                    </div>
-                    <button onclick="deleteCall(${call.id})" class="btn-danger-soft" style="border:none; padding:4px 8px; border-radius:6px; cursor:pointer;">✕</button>
-                `;
-                callListContainer.appendChild(li);
-            });
-        }
-
-        window.toggleCall = function(id) {
-            currentDayData.calls = currentDayData.calls.map(c => c.id === id ? { ...c, done: !c.done } : c);
-            saveDayData();
-            renderCalls();
+    /* ==========================================================
+       ۷. بخش عادت‌ها (Habit Tracker)
+       ========================================================== */
+    const iconChoices = document.querySelectorAll('.icon-choice');
+    iconChoices.forEach(choice => {
+        choice.onclick = () => {
+            iconChoices.forEach(c => c.classList.remove('selected'));
+            choice.classList.add('selected');
+            selectedHabitIcon = choice.getAttribute('data-icon');
         };
+    });
 
-        window.deleteCall = function(id) {
-            currentDayData.calls = currentDayData.calls.filter(c => c.id !== id);
-            saveDayData();
-            renderCalls();
+    function renderHabits() {
+        const container = document.getElementById('habitsContainer');
+        const data = loadDayData(selectedDateStr);
+        container.innerHTML = '';
+
+        if (data.habits.length === 0) {
+            container.innerHTML = `<div style="text-align:center; color:var(--text-muted); font-size:0.85rem; padding:8px;">عادت‌های روزانه‌ات را از بالا اضافه کن.</div>`;
+            return;
+        }
+
+        data.habits.forEach((habit, index) => {
+            const item = document.createElement('div');
+            item.className = 'habit-item';
+            item.innerHTML = `
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span style="font-size:1.2rem;">${habit.icon}</span>
+                    <span style="font-weight:600; font-size:0.92rem; ${habit.completed ? 'text-decoration:line-through; color:var(--text-muted);' : ''}">${habit.title}</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:10px;">
+                    <input type="checkbox" class="checkbox-custom" ${habit.completed ? 'checked' : ''} onchange="toggleHabit(${index})">
+                    <button class="delete-btn" onclick="deleteHabit(${index})">✕</button>
+                </div>
+            `;
+            container.appendChild(item);
+        });
+    }
+
+    document.getElementById('addHabitBtn').onclick = () => {
+        const input = document.getElementById('habitTitleInput');
+        const title = input.value.trim();
+        if (!title) return;
+
+        const data = loadDayData(selectedDateStr);
+        data.habits.push({
+            title,
+            icon: selectedHabitIcon,
+            completed: false
+        });
+        saveDayData(selectedDateStr, data);
+        input.value = '';
+        renderHabits();
+    };
+
+    window.toggleHabit = function(index) {
+        const data = loadDayData(selectedDateStr);
+        data.habits[index].completed = !data.habits[index].completed;
+        saveDayData(selectedDateStr, data);
+        renderHabits();
+    };
+
+    window.deleteHabit = function(index) {
+        const data = loadDayData(selectedDateStr);
+        data.habits.splice(index, 1);
+        saveDayData(selectedDateStr, data);
+        renderHabits();
+    };
+
+    /* ==========================================================
+       ۸. بخش خواب و ماهک‌ها
+       ========================================================== */
+    const sleepInput = document.getElementById('sleepHoursInput');
+    const moonsDisplay = document.getElementById('moonsDisplay');
+
+    function updateMoons(hours) {
+        const count = Math.min(Math.floor(hours || 0), 24);
+        moonsDisplay.innerHTML = '🌙'.repeat(count);
+    }
+
+    sleepInput.oninput = (e) => {
+        const hours = parseFloat(e.target.value) || 0;
+        updateMoons(hours);
+        const data = loadDayData(selectedDateStr);
+        data.sleep = hours;
+        saveDayData(selectedDateStr, data);
+    };
+
+    /* ==========================================================
+       ۱۳. بودجه ماهانه و هزینه‌ها
+       ========================================================== */
+    function renderExpenses() {
+        const data = loadDayData(selectedDateStr);
+        const container = document.getElementById('expenseListContainer');
+        container.innerHTML = '';
+
+        let todayTotal = 0;
+        data.expenses.forEach((exp, index) => {
+            todayTotal += exp.amount;
+            const item = document.createElement('div');
+            item.className = 'expense-item';
+            item.innerHTML = `
+                <span>${exp.title}</span>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <strong>${exp.amount.toLocaleString('fa-IR')} ت</strong>
+                    <button class="delete-btn" onclick="deleteExpense(${index})">✕</button>
+                </div>
+            `;
+            container.appendChild(item);
+        });
+
+        const monthlyBudget = getMonthlyBudget();
+        document.getElementById('monthlyBudgetDisplay').innerText = monthlyBudget.toLocaleString('fa-IR') + ' ت';
+        document.getElementById('todaySpentDisplay').innerText = todayTotal.toLocaleString('fa-IR') + ' ت';
+        
+        const remaining = monthlyBudget - todayTotal;
+        document.getElementById('remainingBudgetDisplay').innerText = remaining.toLocaleString('fa-IR') + ' ت';
+    }
+
+    document.getElementById('saveBudgetBtn').onclick = () => {
+        const val = parseFloat(document.getElementById('monthlyBudgetInput').value);
+        if (!isNaN(val)) {
+            setMonthlyBudget(val);
+            document.getElementById('monthlyBudgetInput').value = '';
+            renderExpenses();
+        }
+    };
+
+    document.getElementById('addExpenseBtn').onclick = () => {
+        const titleInput = document.getElementById('expenseTitleInput');
+        const amountInput = document.getElementById('expenseAmountInput');
+        const title = titleInput.value.trim();
+        const amount = parseFloat(amountInput.value);
+
+        if (!title || isNaN(amount) || amount <= 0) return;
+
+        const data = loadDayData(selectedDateStr);
+        data.expenses.push({ title, amount });
+        saveDayData(selectedDateStr, data);
+
+        titleInput.value = '';
+        amountInput.value = '';
+        renderExpenses();
+    };
+
+    window.deleteExpense = function(index) {
+        const data = loadDayData(selectedDateStr);
+        data.expenses.splice(index, 1);
+        saveDayData(selectedDateStr, data);
+        renderExpenses();
+    };
+
+    /* ==========================================================
+       مدیریت فیلدهای متنی و ذخیره خودکار
+       ========================================================== */
+    const textFields = [
+        { id: 'runningDedication', key: 'running' },
+        { id: 'brainDumpInput', key: 'brainDump' },
+        { id: 'mistakesInput', key: 'mistakes' },
+        { id: 'winsInput', key: 'wins' },
+        { id: 'leisureInput', key: 'leisure' },
+        { id: 'callsInput', key: 'calls' }
+    ];
+
+    textFields.forEach(field => {
+        const elem = document.getElementById(field.id);
+        elem.oninput = () => {
+            const data = loadDayData(selectedDateStr);
+            data[field.key] = elem.value;
+            saveDayData(selectedDateStr, data);
         };
+    });
 
-        // تابع کمکی برای پیشگیری از XSS
-        function escapeHtml(str) {
-            const div = document.createElement('div');
-            div.textContent = str;
-            return div.innerHTML;
-        }
+    /* ==========================================================
+       رندر جامع کل صفحه
+       ========================================================== */
+    function renderAll() {
+        const data = loadDayData(selectedDateStr);
 
-        /* ===================================================
-           راه‌اندازی اولیه برنامه
-           =================================================== */
-        function initApp() {
-            loadGlobalData();
-            initHabitPalette();
-            switchDate();
-        }
+        // پر کردن فیلدهای متنی
+        textFields.forEach(field => {
+            document.getElementById(field.id).value = data[field.key] || '';
+        });
 
-        initApp();
-    </script>
+        // فیلد خواب
+        sleepInput.value = data.sleep || '';
+        updateMoons(data.sleep);
+
+        // رندر کامپوننت‌ها
+        renderTasks();
+        renderHabits();
+        renderExpenses();
+        updateProgress();
+    }
+
+    // راه‌اندازی اولیه
+    renderCalendar();
+    renderAll();
+</script>
 </body>
 </html>
